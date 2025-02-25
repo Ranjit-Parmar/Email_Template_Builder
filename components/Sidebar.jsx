@@ -33,7 +33,6 @@ const LayoutData = [
       icon : column1,
       style : {
         width : '100%',
-        
         display : 'flex',
         alignItems : 'center',
         justifyContent : 'center',
@@ -48,7 +47,6 @@ const LayoutData = [
       icon : column2,
       style : {
         width : '100%',
-        
         display : 'flex',
         alignItems : 'center',
         justifyContent : 'center',
@@ -62,8 +60,7 @@ const LayoutData = [
       numOfColumns : 3,
       icon : column3,
       style : {
-        width : '100%',
-        
+        width : '100%',        
         display : 'flex',
         alignItems : 'center',
         justifyContent : 'center',
@@ -77,8 +74,7 @@ const LayoutData = [
       numOfColumns : 4,
       icon : column4,
       style : {
-        width : '100%',
-        
+        width : '100%',        
         display : 'flex',
         alignItems : 'center',
         justifyContent : 'center',
@@ -90,31 +86,39 @@ const LayoutData = [
       label : 'Heading',
       type : 'heading',
       icon : heading,
-      style : {
-        outerStyle: {
-          
-          width : '100%',
-          fontSize : '18px',
-          lineHeight : '28px',
-          fontWeight : 'bold',
-        },
-        innerStyle: {
-          overflowWrap : 'break-word',
-          textAlign : 'center'
-        }
-      }
+  
   },
   {
       
       label : 'Article 1',
       type : 'right-image-article',
-      icon : layout1
+      icon : layout1,
+      style : {
+          fontSize: '16px',
+          fontWeight: 'normal',
+          lineHeight: '1.2',
+          color: 'black',
+          padding : '4px',
+          marginTop : '0px',
+          marginBottom : '0px',
+          textAlign : 'center',
+        }
   },
   {
       
       label : 'Article 2',
       type : 'left-image-article',
-      icon : layout2
+      icon : layout2,
+      style : {
+          fontSize: '16px',
+          fontWeight: 'normal',
+          lineHeight: '1.2',
+          color: 'black',
+          padding : '4px',
+          marginTop : '0px',
+          marginBottom : '0px',
+          textAlign : 'center',        
+      }
   },
   {
       
@@ -126,19 +130,33 @@ const LayoutData = [
 
 
 const ElementData = [
-  // p-3 bg-blue-600 w-40 shadow-md hover:bg-blue-700 text-white rounded-md
+  
   {
       
       label : 'Button',
       type : 'button',
+      content : 'Click here',
+      url: '#',
       icon : button,
       style : {
         padding : '12px',
         backgroundColor : '#2563eb',
-        width : '160px',
+        color : '#fff',
+        width : 'auto',
+        fontSize: '16px',
+        textAlign: 'center',
         boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
         color: 'white',
-        borderRadius: '0.375rem'        
+        borderRadius: '10px',
+        objectFit : 'contain'       
+      },
+      outerStyle: {
+        display : 'flex',
+        justifyContent : 'center',
+        alignItems : 'center',
+        width : '100%',
+        height : 'auto',
+        backgroundColor : '#FFFFFF'
       }
   },
   {
@@ -148,7 +166,6 @@ const ElementData = [
       icon : table
   },
   {
-    // w-52 h-52 rounded-md
       label : 'Image',
       type : 'image',
       icon : image,

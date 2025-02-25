@@ -10,12 +10,16 @@ import LeftImageArticle from "./LeftImageArticle";
 import RightImageArticle from "./RightImageArticle";
 import { ElementContext } from "@/context/ElementContext";
 import HeaderLayout from "./HeaderLayout";
+import { SelectedElementContext } from "@/context/SelectedElement";
 
 const Canvas = () => {
+
   const [viewPort, setViewPort] = useState('desktop');
   const {layoutDataObj, setLayoutDataObj, layoutDataArray, setLayoutDataArray} = useContext(LayoutContext);
+  const { setSelectedHeader } = useContext(SelectedElementContext);
   const {setElementDataObj} = useContext(ElementContext);
   const [isDraggingLayout, setIsDraggingLayout] = useState(false);
+  
 
   const onDragOverHandle = (e) => {
     e.preventDefault();
@@ -23,6 +27,7 @@ const Canvas = () => {
       setIsDraggingLayout(true);
     }
   }
+
   const onDragLeaveHandle = () => {
     setIsDraggingLayout(false);
   }
@@ -33,7 +38,8 @@ const Canvas = () => {
     setIsDraggingLayout(false);
     
     if(layoutDataObj?.dragValue){
-      setLayoutDataArray((prev) => [...prev, layoutDataObj.dragValue]);
+      setLayoutDataArray((prev) => [...prev, layoutDataObj?.dragValue]);
+      setSelectedHeader(layoutDataObj?.dragValue)
       setLayoutDataObj(null);
       setElementDataObj(null);
     }
@@ -78,7 +84,10 @@ const Canvas = () => {
         </div>
 
         <div className="mt-20 flex justify-center">
-          <div className={`bg-white p-5 w-full ${viewPort==='desktop'?'max-w-2xl':'max-w-md'} ${isDraggingLayout?'bg-blue-100 border-blue-700 border border-dashed':''}`}
+          <div className={`bg-white p-5 w-full ${viewPort==='desktop'?'max-w-2xl':'max-w-md'}
+           ${isDraggingLayout ?'!bg-green-100 p-3' : ''}
+
+           `}
                onDragOver={onDragOverHandle}
                onDragLeave={onDragLeaveHandle}
                onDrop={(e)=>onDropHandle(e)}
