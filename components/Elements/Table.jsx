@@ -1,56 +1,61 @@
-import React from 'react'
+import React, { useState } from "react";
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-  } from "@/components/ui/table"
-  
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
-const DataTable = () => {
+const DataTable = ({ element }) => {
+  const [cellData, setCellData] = useState(element?.cellData);
 
-  const tableHeading = ['Invoice','Status','Method','Amount'];
-  const tableData = [
-  {
-    invoice: 'INV001',
-    status: 'Paid',
-    method: 'Credit Card',
-    amount: '$250.00'
-  },
-  {
-    invoice: 'INV002',
-    status: 'Pending',
-    method: 'PayPal',
-    amount: '$150.00'
-  }
-];
+  const onChangeHandle = (data) => {
+    const { row, col, value } = data;
+    console.log(data)
+  };
+
   return (
-    <div className='w-full h-full bg-white'>
-        <Table>
-  <TableHeader className="bg-blue-200">
-    <TableRow >
-      {tableHeading?.length > 0 && tableHeading?.map((val,i)=>
-      (
-      <TableHead key={i} className="w-[100px] border text-black font-semibold" >{val}</TableHead>
-      ))}
-    </TableRow>
-  </TableHeader>
-  <TableBody className="bg-white">
-    {tableData?.length > 0 && tableData?.map((val,i)=>
-      (<TableRow key={i}>
-        <TableCell className="font-medium border">{val.invoice}</TableCell>
-        <TableCell className="border">{val.status}</TableCell>
-        <TableCell className="border">{val.method}</TableCell>
-        <TableCell className="text-right border">{val.amount}</TableCell>
-      </TableRow>)
-    )}
-  </TableBody>
-</Table>
+    <div className="w-full h-full bg-white">
+      <Table>
+        <TableHeader className="bg-blue-200">
+          <TableRow>
+            {Array.from({ length: element?.col }, (_, colIndex) => (
+              <TableHead key={colIndex} className="w-[100px] border text-black font-semibold">
+                {element?.cellData[colIndex]?.colHeading || " "}
+              </TableHead>
+            ))}
+          </TableRow>
+        </TableHeader>
 
+        <TableBody className="bg-white">
+          {/* Render all the rows */}
+          {Array.from({ length: element?.row - 1  || 0 }, (_, rowIndex) => (
+            <TableRow key={rowIndex}>
+              {/* Render all the columns */}
+              {Array.from({ length: element?.col || 0 }, (_, colIndex) => (
+                <TableCell key={colIndex} className="border">
+                  <input
+                    type="text"
+                    className="w-full"
+                    value={cellData[rowIndex]?.[`col${colIndex + 1}`] || ""}
+                    onChange={(e) =>
+                      onChangeHandle({
+                        [`row${rowIndex+1}`]: rowIndex,
+                        [`col${colIndex+1}`]: colIndex,
+                        value: e.target.value,
+                      })
+                    }
+                  />
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </div>
-  )
-}
+  );
+};
 
-export default DataTable
+export default DataTable;

@@ -163,7 +163,34 @@ const ElementData = [
       
       label : 'Table',
       type : 'table',
-      icon : table
+      icon : table,
+      row : 4,
+      col : 4,
+      cellData : [
+        {
+          colHeading : 'First Name',
+          col1: 'Ranjit',
+          col2: 'Babubhai',
+          col3: 'Parmar',
+        },
+        {
+          colHeading : 'Middle Name',
+          col1: 'Ravi',
+          col2: 'Babubhai',
+          col3: 'Parmar',
+        },
+        {
+          colHeading : 'Last Name',
+          col1: 'Dayben',
+          col2: 'Babubhai',
+          col3: 'Parmar',
+        },
+        {
+          col1: 'Babubhai',
+          col2: 'Somabhai',
+          col3: 'Parmar',
+        },
+      ]
   },
   {
       label : 'Image',

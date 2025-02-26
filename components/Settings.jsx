@@ -80,6 +80,23 @@ const Settings = () => {
     setSelectedElement(updatedStyles);
   }
 
+  // Table cell selection
+  const onChangeTableCell = (tableCell) => {
+    const updateTableCell = {
+      ...selectedElement,
+      layout : {
+        ...selectedElement?.layout,
+        [selectedElement?.index]: {
+          ...element,
+          [Object.keys(tableCell)[0]] : tableCell?.row,
+          [Object.keys(tableCell)[1]] : tableCell?.col,
+        }
+      }
+    }
+    setSelectedElement(updateTableCell);
+  }
+
+
   return (
     <div className="h-screen bg-white space-y-5 overflow-y-auto custom-scrollbar p-2">
       <h2 className="mt-2 px-2 font-semibold text-gray-500">Setting</h2>
@@ -181,7 +198,7 @@ const Settings = () => {
 
           {/* Table Logic */}
         {element?.type==='table' && 
-          <TableEdit/>
+          <TableEdit element={element} onChangeTableCell={(row,col)=>{onChangeTableCell({"row":row, "col":col})}}/>
         }
       </div>
     </div>
