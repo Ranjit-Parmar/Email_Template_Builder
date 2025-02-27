@@ -8,9 +8,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { SelectedElementContext } from "@/context/SelectedElement";
+import { SelectedTableCellContext } from "@/context/SelectedTableCell";
 
 const DataTable = ({ element }) => {
   const { selectedElement, setSelectedElement } = useContext(SelectedElementContext);
+  const { selectedTableCell, setSelectedTableCell } = useContext(SelectedTableCellContext);
   const [cellData, setCellData] = useState(element?.cellData || []);
 
   // Update cellData when selectedElement changes
@@ -28,11 +30,13 @@ const DataTable = ({ element }) => {
       ...selectedElement?.layout?.[selectedElement?.index]?.cellData.slice(0, row),
       {
         ...selectedElement?.layout?.[selectedElement?.index]?.cellData[row],
-        [`col${col}`]: value,
+        [`col${col}`]: { 
+          value, 
+          style: selectedElement?.layout?.[selectedElement?.index]?.cellData[row]?.[`col${col}`]?.style || {} // Retain the existing style
+        },
       },
       ...selectedElement?.layout?.[selectedElement?.index]?.cellData.slice(row + 1),
     ];
-    
     
     const updatedElement = {
       ...selectedElement,
@@ -47,7 +51,6 @@ const DataTable = ({ element }) => {
 
     setSelectedElement(updatedElement);
     setCellData(updatedCellData);
-  
   };
 
   // Handle column heading change
@@ -85,6 +88,7 @@ const DataTable = ({ element }) => {
                   className="w-full bg-blue-200"
                   value={cellData[colIndex]?.colHeading || ""}
                   onChange={(e) => onHeadingChange(colIndex, e.target.value)}
+                  onClick={() => setSelectedTableCell({ id: selectedElement?.layout?.id, colIndex })}
                 />
               </TableHead>
             ))}
@@ -96,22 +100,36 @@ const DataTable = ({ element }) => {
           {Array.from({ length: element?.row - 1 || 0 }, (_, rowIndex) => (
             <TableRow key={rowIndex}>
               {/* Render all the columns */}
-              {Array.from({ length: element?.col || 0 }, (_, colIndex) => (
-                <TableCell key={colIndex} className="border">
-                  <input
-                    type="text"
-                    className="w-full"
-                    value={cellData[rowIndex]?.[`col${colIndex + 1}`] || ""}
-                    onChange={(e) =>
-                      onChangeHandle({
+              {Array.from({ length: element?.col || 0 }, (_, colIndex) => {
+                const cell = cellData[rowIndex]?.[`col${colIndex + 1}`];
+                return (
+                  <TableCell
+                    key={colIndex}
+                    className="border"
+                    onClick={() =>
+                      setSelectedTableCell({
+                        id: selectedElement?.layout?.id,
                         row: rowIndex,
                         col: colIndex + 1,
-                        value: e.target.value,
                       })
                     }
-                  />
-                </TableCell>
-              ))}
+                    style={cell?.style || {}} // Apply custom styles if any
+                  >
+                    <input
+                      type="text"
+                      className="w-full"
+                      value={cell?.value || ""}
+                      onChange={(e) =>
+                        onChangeHandle({
+                          row: rowIndex,
+                          col: colIndex + 1,
+                          value: e.target.value,
+                        })
+                      }
+                    />
+                  </TableCell>
+                );
+              })}
             </TableRow>
           ))}
         </TableBody>

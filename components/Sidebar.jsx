@@ -160,42 +160,158 @@ const ElementData = [
       }
   },
   {
-      
-      label : 'Table',
-      type : 'table',
-      icon : table,
-      row : 4,
-      col : 4,
-      cellData : [
-        {
-          colHeading : 'First Name',
-          col1: 'Ranjit',
-          col2: 'Babubhai',
-          col3: 'Parmar',
-          col4: 'Porbandar',
+    label: 'Table',
+    type: 'table',
+    icon: table,
+    row: 4,
+    col: 4,
+    cellData: [
+      {
+        colHeading: 'First Name',
+        col1: {
+          value: 'Ranjit',
+          style: {
+            backgroundColor: '#f1c40f', // Example background color
+            fontSize: '14px',            // Example font size
+            fontWeight: 'bold',          // Example font weight
+          },
         },
-        {
-          colHeading : 'Middle Name',
-          col1: 'Ravi',
-          col2: 'Babubhai',
-          col3: 'Parmar',
-          col4: 'Porbandar',
+        col2: {
+          value: 'Babubhai',
+          style: {
+            backgroundColor: '#ecf0f1',
+            fontSize: '13px',
+          },
         },
-        {
-          colHeading : 'Last Name',
-          col1: 'Dayben',
-          col2: 'Babubhai',
-          col3: 'Parmar',
-          col4: 'Porbandar',
+        col3: {
+          value: 'Parmar',
+          style: {
+            backgroundColor: '#e74c3c',
+            fontSize: '14px',
+          },
         },
-        {
-          colHeading : 'Address',
-          col1: 'Babubhai',
-          col2: 'Somabhai',
-          col3: 'Parmar',
-          col4: 'Porbandar',
+        col4: {
+          value: 'Porbandar',
+          style: {
+            backgroundColor: '#3498db',
+            fontSize: '12px',
+          },
         },
-      ]
+      },
+      {
+        colHeading: 'Middle Name',
+        col1: {
+          value: 'Ravi',
+          style: {
+            backgroundColor: '#2ecc71',
+            fontSize: '14px',
+          },
+        },
+        col2: {
+          value: 'Babubhai',
+          style: {
+            backgroundColor: '#1abc9c',
+            fontSize: '15px',
+          },
+        },
+        col3: {
+          value: 'Parmar',
+          style: {
+            backgroundColor: '#9b59b6',
+            fontSize: '14px',
+          },
+        },
+        col4: {
+          value: 'Porbandar',
+          style: {
+            backgroundColor: '#34495e',
+            fontSize: '13px',
+          },
+        },
+      },
+      {
+        colHeading: 'Last Name',
+        col1: {
+          value: 'Dayben',
+          style: {
+            backgroundColor: '#f39c12',
+            fontSize: '16px',
+          },
+        },
+        col2: {
+          value: 'Babubhai',
+          style: {
+            backgroundColor: '#e67e22',
+            fontSize: '14px',
+          },
+        },
+        col3: {
+          value: 'Parmar',
+          style: {
+            backgroundColor: '#e74c3c',
+            fontSize: '15px',
+          },
+        },
+        col4: {
+          value: 'Porbandar',
+          style: {
+            backgroundColor: '#16a085',
+            fontSize: '14px',
+          },
+        },
+      },
+      {
+        colHeading: 'Address',
+        col1: {
+          value: 'Babubhai',
+          style: {
+            backgroundColor: '#1abc9c',
+            fontSize: '14px',
+          },
+        },
+        col2: {
+          value: 'Somabhai',
+          style: {
+            backgroundColor: '#9b59b6',
+            fontSize: '15px',
+          },
+        },
+        col3: {
+          value: 'Parmar',
+          style: {
+            backgroundColor: '#34495e',
+            fontSize: '14px',
+          },
+        },
+        col4: {
+          value: 'Porbandar',
+          style: {
+            backgroundColor: '#f39c12',
+            fontSize: '13px',
+          },
+        },
+      },
+    ],
+    style: {
+      table: {
+        border: '1px solid #ccc',
+        width: '100%',
+        borderCollapse: 'collapse',
+      },
+      header: {
+        backgroundColor: '#f4f4f4',
+        padding: '10px',
+        textAlign: 'left',
+        fontWeight: 'bold',
+      },
+      row: {
+        borderBottom: '1px solid #ccc',
+      },
+      cell: {
+        padding: '8px 12px',
+        textAlign: 'left',
+      },
+    },
   },
   {
       label : 'Image',

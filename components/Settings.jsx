@@ -7,11 +7,13 @@ import InputButtonColor from "./Elements/ButtonSettings/InputButtonColor";
 import InputFieldChange from "./Elements/ButtonSettings/InputFieldChange";
 import InputFieldOuterStyle from "./Elements/ButtonSettings/InputFieldOuterStyle";
 import TableEdit from "./Elements/TableSettings/TableEdit";
+import { SelectedTableCellContext } from "@/context/SelectedTableCell";
 
 const Settings = () => {
   const { selectedElement, setSelectedElement } = useContext(
     SelectedElementContext
   );
+  const { selectedTableCell, setSelectedTableCell } = useContext(SelectedTableCellContext);
   const [element, setElement] = useState();
 
   useEffect(() => {
