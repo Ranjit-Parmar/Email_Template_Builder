@@ -6,7 +6,6 @@ import InputButton from "./Elements/ButtonSettings/InputButton";
 import InputButtonColor from "./Elements/ButtonSettings/InputButtonColor";
 import InputFieldChange from "./Elements/ButtonSettings/InputFieldChange";
 import InputFieldOuterStyle from "./Elements/ButtonSettings/InputFieldOuterStyle";
-import DataTable from "./Elements/Table";
 import TableEdit from "./Elements/TableSettings/TableEdit";
 
 const Settings = () => {
@@ -198,7 +197,9 @@ const Settings = () => {
 
           {/* Table Logic */}
         {element?.type==='table' && 
-          <TableEdit element={element} onChangeTableCell={(row,col)=>{onChangeTableCell({"row":row, "col":col})}}/>
+          <TableEdit
+           element={element}
+           onChangeTableCell={(row,col)=>{onChangeTableCell({"row":row, "col":col})}}/>
         }
       </div>
     </div>

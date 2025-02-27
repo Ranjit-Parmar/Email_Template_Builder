@@ -172,23 +172,28 @@ const ElementData = [
           col1: 'Ranjit',
           col2: 'Babubhai',
           col3: 'Parmar',
+          col4: 'Porbandar',
         },
         {
           colHeading : 'Middle Name',
           col1: 'Ravi',
           col2: 'Babubhai',
           col3: 'Parmar',
+          col4: 'Porbandar',
         },
         {
           colHeading : 'Last Name',
           col1: 'Dayben',
           col2: 'Babubhai',
           col3: 'Parmar',
+          col4: 'Porbandar',
         },
         {
+          colHeading : 'Address',
           col1: 'Babubhai',
           col2: 'Somabhai',
           col3: 'Parmar',
+          col4: 'Porbandar',
         },
       ]
   },
