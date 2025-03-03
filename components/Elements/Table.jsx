@@ -17,10 +17,10 @@ const DataTable = ({ element }) => {
 
   // Update cellData when selectedElement changes
   useEffect(() => {
-    if (selectedElement && selectedElement?.layout?.id === element?.layout?.id) {
-      setCellData(selectedElement?.layout?.[selectedElement?.index]?.cellData || []);
-    }
-  }, [selectedElement]);
+   
+      setCellData(element?.cellData || []);
+    
+  }, [element?.cellData]);
 
   // Handle cell data change
   const onChangeHandle = (data) => {
@@ -117,6 +117,7 @@ const DataTable = ({ element }) => {
                   >
                     <input
                       type="text"
+                      style={cell?.style || {}}
                       className="w-full"
                       value={cell?.value || ""}
                       onChange={(e) =>

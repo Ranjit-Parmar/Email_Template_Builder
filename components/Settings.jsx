@@ -8,6 +8,8 @@ import InputFieldChange from "./Elements/ButtonSettings/InputFieldChange";
 import InputFieldOuterStyle from "./Elements/ButtonSettings/InputFieldOuterStyle";
 import TableEdit from "./Elements/TableSettings/TableEdit";
 import { SelectedTableCellContext } from "@/context/SelectedTableCell";
+import TableCellStyle from "./Elements/TableSettings/TableCellStyle";
+import FontStyle from "./Elements/ButtonSettings/FontStyle";
 
 const Settings = () => {
   const { selectedElement, setSelectedElement } = useContext(
@@ -15,10 +17,15 @@ const Settings = () => {
   );
   const { selectedTableCell, setSelectedTableCell } = useContext(SelectedTableCellContext);
   const [element, setElement] = useState();
+  const [tableCellData, setTableCellData] = useState();
 
   useEffect(() => {
     setElement(selectedElement?.layout[selectedElement?.index]);
   }, [selectedElement]);
+  
+  useEffect(() => {
+      setTableCellData(selectedElement?.layout[selectedElement?.index]?.cellData[selectedTableCell?.row]?.[`col${selectedTableCell?.col}`])
+  }, [tableCellData, selectedTableCell]);
 
   // Change button content
   const onInputContentChange = (fieldName, fieldValue) => {
@@ -43,6 +50,32 @@ const Settings = () => {
       },
     };
     setSelectedElement(updatedStyles);
+  };
+  // Change font style
+  const onFontStyleChangeHandle = (styleValue) => {
+    
+    const changedStyles = {
+      "fontWeight": styleValue.includes('bold') ? 'bold' : 'normal', 
+      "fontStyle": styleValue.includes('italic') ? 'italic' : 'normal', 
+      "textDecoration": styleValue.includes('strikethrough') ? 'underline' : 'none', 
+  }
+
+    const updatedStyles = {
+      ...selectedElement,
+      layout : {
+        ...selectedElement?.layout,
+        [selectedElement?.index] : {
+          ...element,
+          style: {
+            ...element?.style,
+            ...changedStyles
+          }
+        }
+      }
+    }
+
+    setSelectedElement(updatedStyles);
+    
   };
 
   // Input field styles
@@ -96,6 +129,44 @@ const Settings = () => {
     }
     setSelectedElement(updateTableCell);
   }
+
+
+  // Table cell style 
+  const onTableCellStyleChangeHandle = (fieldName, fieldValue) => {
+    const cellKey = `col${selectedTableCell?.col}`; 
+
+    const updatedCellData = element?.cellData.map((row, rowIndex) => {
+      if (rowIndex === selectedTableCell?.row) {
+        // Only update the cell in the selected row
+        return {
+          ...row,
+          [cellKey]: {
+            ...row[cellKey], 
+            style: {
+              ...row[cellKey].style,  
+              [fieldName]: fieldValue, 
+            },
+          },
+        };
+      }
+      return row;
+    });
+  
+    // Update the entire element with the new cell data
+    const updatedElement = {
+      ...selectedElement,
+      layout: {
+        ...selectedElement?.layout,
+        [selectedElement?.index]: {
+          ...selectedElement?.layout?.[selectedElement?.index],
+          cellData: updatedCellData,
+        },
+      },
+    };
+  
+    setSelectedElement(updatedElement);
+  };
+  
 
 
   return (
@@ -161,6 +232,22 @@ const Settings = () => {
             />
           )}
 
+        {/* Button Font Weight Logic */}
+        {(element?.style?.fontWeight || element?.style?.fontStyle || element?.style?.textDecoration) && (
+            <FontStyle
+              label={"Font Style"}
+              className="ml-3 form-input"
+              elementFieldVal={[
+                element?.style?.fontWeight,
+                element?.style?.fontStyle,
+                element?.style?.textDecoration,
+              ]}
+              onFontStyleChangeHandle={(val) => {
+                onFontStyleChangeHandle(val);
+              }}
+            />
+          )}
+
         {/* Padding Logic */}
         {element?.style?.padding && (
             <InputFieldChange
@@ -197,11 +284,23 @@ const Settings = () => {
             />
           )}
 
-          {/* Table Logic */}
+        {/* Table Logic */}
         {element?.type==='table' && 
           <TableEdit
            element={element}
            onChangeTableCell={(row,col)=>{onChangeTableCell({"row":row, "col":col})}}/>
+        }
+
+        {/* Table Style Logic */}
+        {element?.type==='table' && element?.cellData && tableCellData?.style?.backgroundColor &&
+          <TableCellStyle
+          label={"Background Color"}
+          elementFieldVal={tableCellData?.style?.backgroundColor}
+          onTableCellStyleChangeHandle={(val) => {
+            onTableCellStyleChangeHandle("backgroundColor", val);
+          }}
+        />
+         
         }
       </div>
     </div>

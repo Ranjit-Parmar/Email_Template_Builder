@@ -145,6 +145,9 @@ const ElementData = [
         width : 'auto',
         fontSize: '16px',
         textAlign: 'center',
+        fontWeight: 'bold',
+        fontStyle: 'normal',
+        textDecoration: 'none',
         boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
         color: 'white',
         borderRadius: '10px',
@@ -169,125 +172,188 @@ const ElementData = [
       {
         colHeading: 'First Name',
         col1: {
-          value: 'Ranjit',
+          value: 'Emily',
           style: {
-            backgroundColor: '#f1c40f', // Example background color
-            fontSize: '14px',            // Example font size
-            fontWeight: 'bold',          // Example font weight
+            backgroundColor: '#ffffff',
+            color: '#000000', 
+            fontSize: '13px',            
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+            textDecoration: 'none'
           },
         },
         col2: {
-          value: 'Babubhai',
+          value: 'Grace',
           style: {
-            backgroundColor: '#ecf0f1',
+            backgroundColor: '#ffffff',
+            color: '#000000',
             fontSize: '13px',
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+            textDecoration: 'none'
           },
         },
         col3: {
-          value: 'Parmar',
+          value: 'Thompson',
           style: {
-            backgroundColor: '#e74c3c',
+            backgroundColor: '#ffffff',
+            color: '#000000',
             fontSize: '14px',
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+            textDecoration: 'none'
           },
         },
         col4: {
-          value: 'Porbandar',
+          value: 'USA',
           style: {
-            backgroundColor: '#3498db',
+            backgroundColor: '#ffffff',
+            color: '#000000',
             fontSize: '12px',
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+            textDecoration: 'none'
           },
         },
       },
       {
         colHeading: 'Middle Name',
         col1: {
-          value: 'Ravi',
+          value: 'Michael',
           style: {
-            backgroundColor: '#2ecc71',
+            backgroundColor: '#ffffff',
+            color: '#000000',
             fontSize: '14px',
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+            textDecoration: 'none'
           },
         },
         col2: {
-          value: 'Babubhai',
+          value: 'James',
           style: {
-            backgroundColor: '#1abc9c',
+            backgroundColor: '#ffffff',
+            color: '#000000',
             fontSize: '15px',
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+            textDecoration: 'none'
           },
         },
         col3: {
-          value: 'Parmar',
+          value: 'Andreson',
           style: {
-            backgroundColor: '#9b59b6',
+            backgroundColor: '#ffffff',
+            color: '#000000',
             fontSize: '14px',
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+            textDecoration: 'none'
           },
         },
         col4: {
-          value: 'Porbandar',
+          value: 'USA',
           style: {
-            backgroundColor: '#34495e',
+            backgroundColor: '#ffffff',
+            color: '#000000',
             fontSize: '13px',
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+            textDecoration: 'none'
           },
         },
       },
       {
         colHeading: 'Last Name',
         col1: {
-          value: 'Dayben',
+          value: 'Sarah',
           style: {
-            backgroundColor: '#f39c12',
+            backgroundColor: '#ffffff',
+            color: '#000000',
             fontSize: '16px',
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+            textDecoration: 'none'
           },
         },
         col2: {
-          value: 'Babubhai',
+          value: 'Elizabeth',
           style: {
-            backgroundColor: '#e67e22',
+            backgroundColor: '#ffffff',
+            color: '#000000',
             fontSize: '14px',
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+            textDecoration: 'none'
           },
         },
         col3: {
-          value: 'Parmar',
+          value: 'Miller',
           style: {
-            backgroundColor: '#e74c3c',
+            backgroundColor: '#ffffff',
+            color: '#000000',
             fontSize: '15px',
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+            textDecoration: 'none'
           },
         },
         col4: {
-          value: 'Porbandar',
+          value: 'USA',
           style: {
-            backgroundColor: '#16a085',
+            backgroundColor: '#ffffff',
+            color: '#000000',
             fontSize: '14px',
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+            textDecoration: 'none'
           },
         },
       },
       {
         colHeading: 'Address',
         col1: {
-          value: 'Babubhai',
+          value: 'Jason',
           style: {
-            backgroundColor: '#1abc9c',
+            backgroundColor: '#ffffff',
+            color: '#000000',
             fontSize: '14px',
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+            textDecoration: 'none'
           },
         },
         col2: {
-          value: 'Somabhai',
+          value: 'Lee',
           style: {
-            backgroundColor: '#9b59b6',
+            backgroundColor: '#ffffff',
+            color: '#000000',
             fontSize: '15px',
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+            textDecoration: 'none'
           },
         },
         col3: {
-          value: 'Parmar',
+          value: 'Harris',
           style: {
-            backgroundColor: '#34495e',
+            backgroundColor: '#ffffff',
+            color: '#000000',
             fontSize: '14px',
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+            textDecoration: 'none'
           },
         },
         col4: {
-          value: 'Porbandar',
+          value: 'USA',
           style: {
-            backgroundColor: '#f39c12',
+            backgroundColor: '#ffffff',
+            color: '#000000',
             fontSize: '13px',
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+            textDecoration: 'none'
           },
         },
       },
@@ -303,6 +369,8 @@ const ElementData = [
         padding: '10px',
         textAlign: 'left',
         fontWeight: 'bold',
+        fontStyle: 'normal',
+        textDecoration: 'none'
       },
       row: {
         borderBottom: '1px solid #ccc',
