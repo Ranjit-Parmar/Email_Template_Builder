@@ -15,7 +15,7 @@ const Settings = () => {
   const { selectedElement, setSelectedElement } = useContext(
     SelectedElementContext
   );
-  const { selectedTableCell, setSelectedTableCell } = useContext(SelectedTableCellContext);
+  const { selectedTableCell } = useContext(SelectedTableCellContext);
   const [element, setElement] = useState();
   const [tableCellData, setTableCellData] = useState();
 
@@ -24,8 +24,15 @@ const Settings = () => {
   }, [selectedElement]);
   
   useEffect(() => {
-      setTableCellData(selectedElement?.layout[selectedElement?.index]?.cellData[selectedTableCell?.row]?.[`col${selectedTableCell?.col}`])
-  }, [tableCellData, selectedTableCell]);
+    if (
+      selectedElement?.layout?.[selectedElement?.index]?.cellData &&
+      selectedTableCell?.row !== undefined &&
+      selectedTableCell?.col !== undefined
+    ) {
+      setTableCellData(selectedElement?.layout[selectedElement?.index]?.cellData[selectedTableCell?.row]?.[`col${selectedTableCell?.col}`] )
+    }
+    
+  }, [tableCellData, selectedTableCell, selectedElement]);
 
   // Change button content
   const onInputContentChange = (fieldName, fieldValue) => {
@@ -52,7 +59,7 @@ const Settings = () => {
     setSelectedElement(updatedStyles);
   };
   // Change font style
-  const onFontStyleChangeHandle = (styleValue) => {
+  const onButtonFontStyleChangeHandle = (styleValue) => {
     
     const changedStyles = {
       "fontWeight": styleValue.includes('bold') ? 'bold' : 'normal', 
@@ -168,6 +175,50 @@ const Settings = () => {
   };
   
 
+  // Table font style change
+
+  const onTableFontStyleChangeHandle = (styleValue) => {
+  
+    const changedStyles = {
+      "fontWeight": styleValue.includes('bold') ? 'bold' : 'normal', 
+      "fontStyle": styleValue.includes('italic') ? 'italic' : 'normal', 
+      "textDecoration": styleValue.includes('strikethrough') ? 'underline' : 'none', 
+  }
+
+  const cellKey = `col${selectedTableCell?.col}`; 
+
+    const updatedCellData = element?.cellData.map((row, rowIndex) => {
+      if (rowIndex === selectedTableCell?.row) {
+        // Only update the cell in the selected row
+        return {
+          ...row,
+          [cellKey]: {
+            ...row[cellKey], 
+            style: {
+              ...row[cellKey].style,  
+              ...changedStyles, 
+            },
+          },
+        };
+      }
+      return row;
+    });
+
+    // Update the entire element with the new cell data
+    const updatedElement = {
+      ...selectedElement,
+      layout: {
+        ...selectedElement?.layout,
+        [selectedElement?.index]: {
+          ...selectedElement?.layout?.[selectedElement?.index],
+          cellData: updatedCellData,
+        },
+      },
+    };
+  
+    setSelectedElement(updatedElement);
+  
+  }
 
   return (
     <div className="h-screen bg-white space-y-5 overflow-y-auto custom-scrollbar p-2">
@@ -232,7 +283,7 @@ const Settings = () => {
             />
           )}
 
-        {/* Button Font Weight Logic */}
+        {/* Button Font Style Logic */}
         {(element?.style?.fontWeight || element?.style?.fontStyle || element?.style?.textDecoration) && (
             <FontStyle
               label={"Font Style"}
@@ -243,7 +294,7 @@ const Settings = () => {
                 element?.style?.textDecoration,
               ]}
               onFontStyleChangeHandle={(val) => {
-                onFontStyleChangeHandle(val);
+                onButtonFontStyleChangeHandle(val);
               }}
             />
           )}
@@ -300,7 +351,22 @@ const Settings = () => {
             onTableCellStyleChangeHandle("backgroundColor", val);
           }}
         />
-         
+        }
+
+        {/* Table Font Style Logic */}
+        {element?.type==='table' && element?.cellData && (tableCellData?.style?.fontWeight || tableCellData?.style?.fontStyle || tableCellData?.style?.textDecoration) &&
+          <FontStyle
+          label={"Font Style"}
+          className="ml-3 form-input"
+          elementFieldVal={[
+            tableCellData?.style?.fontWeight,
+            tableCellData?.style?.fontStyle,
+            tableCellData?.style?.textDecoration,
+          ]}
+          onFontStyleChangeHandle={(val) => {
+            onTableFontStyleChangeHandle(val);
+          }}
+        />
         }
       </div>
     </div>

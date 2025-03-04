@@ -170,14 +170,24 @@ const ElementData = [
     col: 4,
     cellData: [
       {
-        colHeading: 'First Name',
+        col0: {
+         value : 'First Name',
+         style: {
+          backgroundColor: '#ffffff',
+          color: '#000000', 
+          fontSize: '13px',            
+          fontWeight: 'bold',
+          fontStyle: 'normal',
+          textDecoration: 'none'
+        },
+        },
         col1: {
           value: 'Emily',
           style: {
             backgroundColor: '#ffffff',
             color: '#000000', 
             fontSize: '13px',            
-            fontWeight: 'normal',
+            fontWeight: 'bold',
             fontStyle: 'normal',
             textDecoration: 'none'
           },
@@ -190,7 +200,7 @@ const ElementData = [
             fontSize: '13px',
             fontWeight: 'normal',
             fontStyle: 'normal',
-            textDecoration: 'none'
+            textDecoration: 'underline'
           },
         },
         col3: {
@@ -217,7 +227,17 @@ const ElementData = [
         },
       },
       {
-        colHeading: 'Middle Name',
+        col0: {
+          value : 'Middle Name',
+          style: {
+           backgroundColor: '#ffffff',
+           color: '#000000', 
+           fontSize: '13px',            
+           fontWeight: 'bold',
+           fontStyle: 'normal',
+           textDecoration: 'none'
+         },
+         },
         col1: {
           value: 'Michael',
           style: {
@@ -258,13 +278,23 @@ const ElementData = [
             color: '#000000',
             fontSize: '13px',
             fontWeight: 'normal',
-            fontStyle: 'normal',
+            fontStyle: 'italic',
             textDecoration: 'none'
           },
         },
       },
       {
-        colHeading: 'Last Name',
+        col0: {
+          value : 'Last Name',
+          style: {
+           backgroundColor: '#ffffff',
+           color: '#000000', 
+           fontSize: '13px',            
+           fontWeight: 'bold',
+           fontStyle: 'normal',
+           textDecoration: 'none'
+         },
+         },
         col1: {
           value: 'Sarah',
           style: {
@@ -311,7 +341,17 @@ const ElementData = [
         },
       },
       {
-        colHeading: 'Address',
+        col0: {
+          value : 'Address',
+          style: {
+           backgroundColor: '#ffffff',
+           color: '#000000', 
+           fontSize: '13px',            
+           fontWeight: 'bold',
+           fontStyle: 'normal',
+           textDecoration: 'none'
+         },
+         },
         col1: {
           value: 'Jason',
           style: {

@@ -53,45 +53,33 @@ const DataTable = ({ element }) => {
     setCellData(updatedCellData);
   };
 
-  // Handle column heading change
-  const onHeadingChange = (colIndex, newHeading) => {
-    const updatedCellData = [...cellData];
-    updatedCellData[colIndex] = {
-      ...updatedCellData[colIndex],
-      colHeading: newHeading,
-    };
-
-    const updatedElement = {
-      ...selectedElement,
-      layout: {
-        ...selectedElement?.layout,
-        [selectedElement?.index]: {
-          ...selectedElement?.layout?.[selectedElement?.index],
-          cellData: updatedCellData,
-        },
-      },
-    };
-
-    setSelectedElement(updatedElement);
-    setCellData(updatedCellData);
-  };
-
   return (
     <div className="w-full h-full bg-white">
       <Table>
         <TableHeader className="bg-blue-200">
           <TableRow>
-            {Array.from({ length: element?.col }, (_, colIndex) => (
-              <TableHead key={colIndex} className="w-[100px] border text-black font-semibold">
+            {Array.from({ length: element?.col }, (_, colIndex) => {
+
+              const cell = cellData[colIndex]?.[`col${0}`];
+              return (
+              <TableHead key={colIndex} style={cell?.style || {}} className="w-[100px] border text-black font-semibold">
                 <input
                   type="text"
+                  style={cell?.style || {}}
                   className="w-full bg-blue-200"
-                  value={cellData[colIndex]?.colHeading || ""}
-                  onChange={(e) => onHeadingChange(colIndex, e.target.value)}
-                  onClick={() => setSelectedTableCell({ id: selectedElement?.layout?.id, colIndex })}
+                  value={cell?.value || ""}
+                  onChange={(e) =>
+                    onChangeHandle({
+                      row: colIndex,
+                      col: 0,
+                      value: e.target.value,
+                    })
+                  }
+                  onClick={() => setSelectedTableCell({ id: selectedElement?.layout?.id, row: colIndex, col:0 })}
                 />
               </TableHead>
-            ))}
+            )
+            })}
           </TableRow>
         </TableHeader>
 
