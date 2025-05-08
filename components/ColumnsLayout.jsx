@@ -15,6 +15,7 @@ import {
 } from "./ui/resizable";
 
 const ColumnsLayout = ({ layout }) => {
+  
   const panelRef = useRef();
   const [dragOver, setDragOver] = useState();
   const [isDraggingElement, setIsDraggingElement] = useState(false);

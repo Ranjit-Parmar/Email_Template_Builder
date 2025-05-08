@@ -1,6 +1,6 @@
 'use client'
 import React, { useContext } from 'react'
-
+import { ImageIcon } from 'lucide-react';
 // layout data imports
 import column1 from '@/public/column1.png'
 import column2 from '@/public/column2.png'
@@ -16,7 +16,7 @@ import LayoutCard from './LayoutCard'
 import button from '@/public/button.png'
 import spacer from '@/public/spacer.png'
 import table from '@/public/Table.png'
-import image from '@/public/image.png'
+import image from '@/public/hero.png'
 import text from '@/public/Text.png'
 import divider from '@/public/Divider.png'
 import ElementCard from './ElementCard'
@@ -93,31 +93,56 @@ const LayoutData = [
       label : 'Article 1',
       type : 'right-image-article',
       icon : layout1,
+      imageUrl: image,
+      alt: 'Image',
+      content : 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa, voluptatum. Molestiae quos quaerat, quas at officia, itaque corrupti quod possimus commodi saepe ipsa dolore. Quo quasi repellendus cum et voluptates distinctio ab quibusdam unde laborum corrupti eos, ex ea quam iusto neque, amet voluptatem ratione voluptas?',
+      style : {      
+        fontSize: '16px',
+        fontWeight: 'normal',
+        fontStyle: 'normal',
+        textDecoration: 'none',
+        textTransform: 'Capitalize',
+        lineHeight: '24px',
+        backgroundColor : '#ffffff',
+        color: '#000000',
+        padding : '4px',
+        marginTop : '0px',
+        marginBottom : '0px',
+        textAlign : 'center',
+        wordBreak: 'break-word',
+        overflow: 'hidden',
+        },
+        outerStyle: {
+          width: '100%',
+        }
+      },
+      {
+        
+        label : 'Article 2',
+        type : 'left-image-article',
+        icon : layout2,
+        imageUrl: image,
+        alt: 'Image',
+        imageUrl : image,
+        content : 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa, voluptatum. Molestiae quos quaerat, quas at officia, itaque corrupti quod possimus commodi saepe ipsa dolore. Quo quasi repellendus cum et voluptates distinctio ab quibusdam unde laborum corrupti eos, ex ea quam iusto neque, amet voluptatem ratione voluptas?',
       style : {
           fontSize: '16px',
           fontWeight: 'normal',
-          lineHeight: '1.2',
-          color: 'black',
+          fontStyle: 'normal',
+          textDecoration: 'none',
+          textTransform: 'Capitalize',
+          lineHeight: '24px',
+          backgroundColor : '#ffffff',
+          color: '#000000',
           padding : '4px',
           marginTop : '0px',
           marginBottom : '0px',
           textAlign : 'center',
-        }
-  },
-  {
-      
-      label : 'Article 2',
-      type : 'left-image-article',
-      icon : layout2,
-      style : {
-          fontSize: '16px',
-          fontWeight: 'normal',
-          lineHeight: '1.2',
-          color: 'black',
-          padding : '4px',
-          marginTop : '0px',
-          marginBottom : '0px',
-          textAlign : 'center',        
+          wordBreak: 'break-word',
+          overflow: 'hidden',        
+      },
+      outerStyle: {
+        width: '100%',
       }
   },
   {
@@ -148,6 +173,7 @@ const ElementData = [
         fontWeight: 'bold',
         fontStyle: 'normal',
         textDecoration: 'none',
+        textTransform: 'Capitalize',
         boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
         color: 'white',
         borderRadius: '10px',
@@ -174,22 +200,26 @@ const ElementData = [
          value : 'First Name',
          style: {
           backgroundColor: '#ffffff',
-          color: '#000000', 
+          color: '#000000',
+          padding : '4px', 
           fontSize: '13px',            
           fontWeight: 'bold',
           fontStyle: 'normal',
-          textDecoration: 'none'
+          textDecoration: 'none',
+          textTransform: 'Capitalize'
         },
         },
         col1: {
           value: 'Emily',
           style: {
             backgroundColor: '#ffffff',
-            color: '#000000', 
+            color: '#000000',
+            padding : '4px', 
             fontSize: '13px',            
-            fontWeight: 'bold',
+            fontWeight: 'normal',
             fontStyle: 'normal',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            textTransform: 'Capitalize'
           },
         },
         col2: {
@@ -197,10 +227,12 @@ const ElementData = [
           style: {
             backgroundColor: '#ffffff',
             color: '#000000',
+            padding : '4px',
             fontSize: '13px',
             fontWeight: 'normal',
             fontStyle: 'normal',
-            textDecoration: 'underline'
+            textDecoration: 'none',
+            textTransform: 'Capitalize'
           },
         },
         col3: {
@@ -208,10 +240,12 @@ const ElementData = [
           style: {
             backgroundColor: '#ffffff',
             color: '#000000',
-            fontSize: '14px',
+            padding : '4px',
+            fontSize: '13px',
             fontWeight: 'normal',
             fontStyle: 'normal',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            textTransform: 'Capitalize'
           },
         },
         col4: {
@@ -219,10 +253,12 @@ const ElementData = [
           style: {
             backgroundColor: '#ffffff',
             color: '#000000',
-            fontSize: '12px',
+            padding : '4px',
+            fontSize: '13px',
             fontWeight: 'normal',
             fontStyle: 'normal',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            textTransform: 'Uppercase'
           },
         },
       },
@@ -231,11 +267,13 @@ const ElementData = [
           value : 'Middle Name',
           style: {
            backgroundColor: '#ffffff',
-           color: '#000000', 
+           color: '#000000',
+           padding : '4px', 
            fontSize: '13px',            
            fontWeight: 'bold',
            fontStyle: 'normal',
-           textDecoration: 'none'
+           textDecoration: 'none',
+           textTransform: 'Capitalize'
          },
          },
         col1: {
@@ -243,10 +281,12 @@ const ElementData = [
           style: {
             backgroundColor: '#ffffff',
             color: '#000000',
-            fontSize: '14px',
+            padding : '4px',
+            fontSize: '13px',
             fontWeight: 'normal',
             fontStyle: 'normal',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            textTransform: 'Capitalize'
           },
         },
         col2: {
@@ -254,10 +294,12 @@ const ElementData = [
           style: {
             backgroundColor: '#ffffff',
             color: '#000000',
-            fontSize: '15px',
+            padding : '4px',
+            fontSize: '13px',
             fontWeight: 'normal',
             fontStyle: 'normal',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            textTransform: 'Capitalize',
           },
         },
         col3: {
@@ -265,10 +307,12 @@ const ElementData = [
           style: {
             backgroundColor: '#ffffff',
             color: '#000000',
-            fontSize: '14px',
+            padding : '4px',
+            fontSize: '13px',
             fontWeight: 'normal',
             fontStyle: 'normal',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            textTransform: 'Capitalize'
           },
         },
         col4: {
@@ -276,10 +320,12 @@ const ElementData = [
           style: {
             backgroundColor: '#ffffff',
             color: '#000000',
+            padding : '4px',
             fontSize: '13px',
             fontWeight: 'normal',
-            fontStyle: 'italic',
-            textDecoration: 'none'
+            fontStyle: 'normal',
+            textDecoration: 'none',
+            textTransform: 'Uppercase'
           },
         },
       },
@@ -288,11 +334,13 @@ const ElementData = [
           value : 'Last Name',
           style: {
            backgroundColor: '#ffffff',
-           color: '#000000', 
+           color: '#000000',
+           padding : '4px', 
            fontSize: '13px',            
            fontWeight: 'bold',
            fontStyle: 'normal',
-           textDecoration: 'none'
+           textDecoration: 'none',
+           textTransform: 'Capitalize'
          },
          },
         col1: {
@@ -300,10 +348,12 @@ const ElementData = [
           style: {
             backgroundColor: '#ffffff',
             color: '#000000',
-            fontSize: '16px',
+            padding : '4px',
+            fontSize: '13px',
             fontWeight: 'normal',
             fontStyle: 'normal',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            textTransform: 'Capitalize'
           },
         },
         col2: {
@@ -311,10 +361,12 @@ const ElementData = [
           style: {
             backgroundColor: '#ffffff',
             color: '#000000',
-            fontSize: '14px',
+            padding : '4px',
+            fontSize: '13px',
             fontWeight: 'normal',
             fontStyle: 'normal',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            textTransform: 'Capitalize'
           },
         },
         col3: {
@@ -322,10 +374,12 @@ const ElementData = [
           style: {
             backgroundColor: '#ffffff',
             color: '#000000',
-            fontSize: '15px',
+            padding : '4px',
+            fontSize: '13px',
             fontWeight: 'normal',
             fontStyle: 'normal',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            textTransform: 'Capitalize'
           },
         },
         col4: {
@@ -333,10 +387,12 @@ const ElementData = [
           style: {
             backgroundColor: '#ffffff',
             color: '#000000',
-            fontSize: '14px',
+            padding : '4px',
+            fontSize: '13px',
             fontWeight: 'normal',
             fontStyle: 'normal',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            textTransform: 'Uppercase'
           },
         },
       },
@@ -345,11 +401,13 @@ const ElementData = [
           value : 'Address',
           style: {
            backgroundColor: '#ffffff',
-           color: '#000000', 
+           color: '#000000',
+           padding : '4px', 
            fontSize: '13px',            
            fontWeight: 'bold',
            fontStyle: 'normal',
-           textDecoration: 'none'
+           textDecoration: 'none',
+           textTransform: 'Capitalize'
          },
          },
         col1: {
@@ -357,10 +415,12 @@ const ElementData = [
           style: {
             backgroundColor: '#ffffff',
             color: '#000000',
-            fontSize: '14px',
+            padding : '4px',
+            fontSize: '13px',
             fontWeight: 'normal',
             fontStyle: 'normal',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            textTransform: 'Capitalize'
           },
         },
         col2: {
@@ -368,10 +428,12 @@ const ElementData = [
           style: {
             backgroundColor: '#ffffff',
             color: '#000000',
-            fontSize: '15px',
+            padding : '4px',
+            fontSize: '13px',
             fontWeight: 'normal',
             fontStyle: 'normal',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            textTransform: 'Capitalize'
           },
         },
         col3: {
@@ -379,10 +441,12 @@ const ElementData = [
           style: {
             backgroundColor: '#ffffff',
             color: '#000000',
-            fontSize: '14px',
+            padding : '4px',
+            fontSize: '13px',
             fontWeight: 'normal',
             fontStyle: 'normal',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            textTransform: 'Capitalize'
           },
         },
         col4: {
@@ -390,46 +454,31 @@ const ElementData = [
           style: {
             backgroundColor: '#ffffff',
             color: '#000000',
+            padding : '4px',
             fontSize: '13px',
             fontWeight: 'normal',
             fontStyle: 'normal',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            textTransform: 'Uppercase'
           },
         },
       },
     ],
-    style: {
-      table: {
-        border: '1px solid #ccc',
-        width: '100%',
-        borderCollapse: 'collapse',
-      },
-      header: {
-        backgroundColor: '#f4f4f4',
-        padding: '10px',
-        textAlign: 'left',
-        fontWeight: 'bold',
-        fontStyle: 'normal',
-        textDecoration: 'none'
-      },
-      row: {
-        borderBottom: '1px solid #ccc',
-      },
-      cell: {
-        padding: '8px 12px',
-        textAlign: 'left',
-      },
-    },
+    
   },
   {
       label : 'Image',
       type : 'image',
       icon : image,
+      imageUrl: image,
+      alt: 'Image',
+      url: '',
       style : {
         innerStyle : {
-         width : '13rem',
-         height : '13rem',
+         width : 'auto',
+         height : 'auto',
          objectFit : 'cover',
+         borderRadius : '10px',
         },
         outerStyle : {
           display : "flex",
@@ -437,7 +486,7 @@ const ElementData = [
           alignItems : "center",
           width : "100%",
           height : "auto",
-          backgroundColor : '#FFFFFF'
+          backgroundColor : '#FFFFFF',
         }
       }
   },
@@ -445,7 +494,16 @@ const ElementData = [
       
       label : 'Typography',
       type : 'typography',
-      icon : text
+      icon : text,
+      style: {
+        fontSize: "20px",
+        fontWeight: "600",          
+        marginBottom: "16px",
+        lineHeight: "1.6", 
+        color: "#333",
+        fontFamily: "'Inter', sans-serif",
+        letterSpacing: "0.5px",
+      }
   },
   {
       
@@ -456,14 +514,16 @@ const ElementData = [
         height: '2px',
         width: '100%',
         backgroundColor:'black',
-        borderRadius: '10px'
       }
   },
   {
       
       label : 'Spacer',
       type : 'spacer',
-      icon : spacer
+      icon : spacer,
+      style : {
+        height: '10px',
+      }
   },
 
 ]

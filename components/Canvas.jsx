@@ -46,7 +46,7 @@ const Canvas = () => {
 };
 
   const getLayoutHandle = (layout) => {
-        
+    
     if(layout?.type==='column'){
       return <ColumnsLayout layout={layout}/>
     }else if(layout?.type==='heading'){

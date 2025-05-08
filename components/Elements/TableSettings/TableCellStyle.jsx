@@ -2,6 +2,7 @@ import React from "react";
 
 const TableCellStyle = ({
   label,
+  fieldName,
   elementFieldVal,
   onTableCellStyleChangeHandle,
 }) => {
@@ -33,7 +34,7 @@ const TableCellStyle = ({
             <div
               key={index}
               className="border border-gray-400"
-              onClick={() => onTableCellStyleChangeHandle(color)}
+              onClick={() => onTableCellStyleChangeHandle(fieldName,color)}
               style={{
                 width: "30px",
                 height: "30px",

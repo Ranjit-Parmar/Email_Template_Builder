@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from 'react';
 const HeadingLayout = ({layout}) => {
 
    const { selectedElement, setSelectedElement, selectedHeader, setSelectedHeader, selectedHeading, setSelectedHeading,  selectedLeftImageArticle, setSelectedLeftImageArticle,
-    selectedRightImageArticle, setSelectedRightImageArticle } = useContext(SelectedElementContext);
+   selectedRightImageArticle, setSelectedRightImageArticle } = useContext(SelectedElementContext);
 
   useEffect(()=>{
       if(selectedElement || selectedHeader || selectedLeftImageArticle || selectedRightImageArticle){

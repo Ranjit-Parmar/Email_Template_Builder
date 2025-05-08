@@ -28,7 +28,7 @@ const FontStyle = ({ label, elementFieldVal, onFontStyleChangeHandle }) => {
   }, [elementFieldVal]);
 
   return (
-    <div className="text-sm font-medium text-gray-700">
+    <div className="text-sm space-y-1 font-medium text-gray-700">
       <span>{label} :</span>
       <ToggleGroup 
         type="multiple" 
@@ -36,13 +36,13 @@ const FontStyle = ({ label, elementFieldVal, onFontStyleChangeHandle }) => {
         value={fontStyleArr} 
         onValueChange={(e) => onFontStyleChangeHandle(e)} 
       >
-        <ToggleGroupItem value="bold" aria-label="Toggle bold">
+        <ToggleGroupItem value="bold" className="w-full" aria-label="Toggle bold">
           <Bold className="h-4 w-4" />
         </ToggleGroupItem>
-        <ToggleGroupItem value="italic" aria-label="Toggle italic">
+        <ToggleGroupItem value="italic" className="w-full" aria-label="Toggle italic">
           <Italic className="h-4 w-4" />
         </ToggleGroupItem>
-        <ToggleGroupItem value="strikethrough" aria-label="Toggle strikethrough">
+        <ToggleGroupItem value="strikethrough" className="w-full" aria-label="Toggle strikethrough">
           <Underline className="h-4 w-4" />
         </ToggleGroupItem>
       </ToggleGroup>
