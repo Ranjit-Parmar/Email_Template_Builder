@@ -21,7 +21,7 @@ const RightImageArticle = ({layout}) => {
 
     return (
         <>
-          <div className={`flex gap-2 ${(layout?.type==selectedElement?.layout?.type && layout?.id==selectedElement?.layout?.id) && 'border border-blue-500'} `} onClick={()=>onClickHandle({layout,id:layout?.id})}>
+          <div className={`flex ${(layout?.type==selectedElement?.layout?.type && layout?.id==selectedElement?.layout?.id) && 'border border-blue-500'} `} onClick={()=>onClickHandle({layout,id:layout?.id})}>
             <div style={layout?.style} className='w-full flex'>
                 {layout?.content}
             </div>

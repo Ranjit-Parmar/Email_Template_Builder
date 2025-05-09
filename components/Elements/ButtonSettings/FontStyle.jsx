@@ -3,12 +3,8 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from "@/components/ui/toggle-group"
-import { useEffect, useState } from "react";
 
 const FontStyle = ({ label, elementFieldVal, onFontStyleChangeHandle }) => {
-  const [fontStyleArr, setFontStyleArr] = useState([]);
-
-  useEffect(() => {
 
     const updatedFontStyleArr = [];
     
@@ -24,8 +20,6 @@ const FontStyle = ({ label, elementFieldVal, onFontStyleChangeHandle }) => {
       }
     });
 
-    setFontStyleArr(updatedFontStyleArr);
-  }, [elementFieldVal]);
 
   return (
     <div className="text-sm space-y-1 font-medium text-gray-700">
@@ -33,7 +27,7 @@ const FontStyle = ({ label, elementFieldVal, onFontStyleChangeHandle }) => {
       <ToggleGroup 
         type="multiple" 
         variant="outline"
-        value={fontStyleArr} 
+        value={updatedFontStyleArr} 
         onValueChange={(e) => onFontStyleChangeHandle(e)} 
       >
         <ToggleGroupItem value="bold" className="w-full" aria-label="Toggle bold">

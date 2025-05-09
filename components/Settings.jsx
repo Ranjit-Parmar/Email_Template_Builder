@@ -14,17 +14,30 @@ import TableFontStyle from "./Elements/TableSettings/TableFontStyle";
 import ImageUpload from "./Elements/ImageSettings/ImageUpload";
 import RightImageArticleOuterStyle from "./Elements/RightImageArticleSettings/RightImageArticleOuterStyle";
 import RightImageArticleTextContent from "./Elements/RightImageArticleSettings/RightImageArticleTextContent";
+import { ALargeSmall, LucideCaseLower, LucideCaseUpper } from "lucide-react";
 
 const Settings = () => {
+
+  const textTransfromData = [
+      {
+        fontValue: "Uppercase",
+        icon: <LucideCaseUpper/>,
+      },
+      {
+        fontValue: "Lowercase",
+        icon: <LucideCaseLower/>,
+      },
+      {
+        fontValue: "Capitalize",
+        icon: <ALargeSmall/>,
+      },
+    ];
+
   const { selectedElement, setSelectedElement } =
     useContext(SelectedElementContext);
   const { selectedTableCell } = useContext(SelectedTableCellContext);
-  const [element, setElement] = useState();
   const [tableCellData, setTableCellData] = useState();
 
-  useEffect(() => {
-    setElement(selectedElement?.layout[selectedElement?.index]);
-  }, [selectedElement]);
 
   useEffect(() => {
     if (
@@ -49,6 +62,8 @@ const Settings = () => {
 
   // Change button color
   const onInputButtonStyleChangeHandle = (fieldName, fieldValue) => {
+
+    const element = selectedElement?.layout[selectedElement?.index]
     const updatedStyles = {
       ...selectedElement,
       layout: {
@@ -64,8 +79,11 @@ const Settings = () => {
     };
     setSelectedElement(updatedStyles);
   };
+
   // Change font style
   const onButtonFontStyleChangeHandle = (styleValue) => {
+
+    const element = selectedElement?.layout[selectedElement?.index]
     const changedStyles = {
       fontWeight: styleValue.includes("bold") ? "bold" : "normal",
       fontStyle: styleValue.includes("italic") ? "italic" : "normal",
@@ -93,6 +111,8 @@ const Settings = () => {
 
   // Input field styles
   const onInputFieldChange = (fieldName, fieldValue) => {
+
+    const element = selectedElement?.layout[selectedElement?.index]
     const updatedStyles = {
       ...selectedElement,
       layout: {
@@ -111,6 +131,8 @@ const Settings = () => {
 
   // Input field outer styles
   const onInputFieldOuterStyle = (fieldName, fieldValue) => {
+
+    const element = selectedElement?.layout[selectedElement?.index]
     const updatedStyles = {
       ...selectedElement,
       layout: {
@@ -129,6 +151,8 @@ const Settings = () => {
 
   // Table cell selection
   const onChangeTableCell = (tableCell) => {
+
+    const element = selectedElement?.layout[selectedElement?.index]
     const updateTableCell = {
       ...selectedElement,
       layout: {
@@ -145,6 +169,8 @@ const Settings = () => {
 
   // Table cell style
   const onTableCellStyleChangeHandle = (fieldName, fieldValue) => {
+
+    const element = selectedElement?.layout[selectedElement?.index]
     const cellKey = `col${selectedTableCell?.col}`;
 
     const updatedCellData = element?.cellData.map((row, rowIndex) => {
@@ -181,6 +207,8 @@ const Settings = () => {
 
   // Table font style change
   const onTableFontStyleChangeHandle = (styleValue) => {
+
+    const element = selectedElement?.layout[selectedElement?.index]
     const changedStyles = {
       fontWeight: styleValue.includes("bold") ? "bold" : "normal",
       fontStyle: styleValue.includes("italic") ? "italic" : "normal",
@@ -225,6 +253,8 @@ const Settings = () => {
 
   // Table font size change
   const onTableFontSizeChangeHandle = (fieldName, fieldValue) => {
+
+    const element = selectedElement?.layout[selectedElement?.index]
     const cellKey = `col${selectedTableCell?.col}`;
 
     const updatedCellData = element?.cellData.map((row, rowIndex) => {
@@ -261,6 +291,8 @@ const Settings = () => {
 
   // Table font case (Uppercase, Lowercase, Capitalize) change
   const onTableFontCaseChangeHandle = (fieldName, fieldValue) => {
+
+    const element = selectedElement?.layout[selectedElement?.index]
     const cellKey = `col${selectedTableCell?.col}`;
 
     const updatedCellData = element?.cellData.map((row, rowIndex) => {
@@ -304,6 +336,8 @@ const Settings = () => {
 
   // Image style logic
   const onImageFieldChange = (fieldName, fieldValue) => {
+
+    const element = selectedElement?.layout[selectedElement?.index]
     const updatedStyles = {
       ...selectedElement,
       layout: {
@@ -332,6 +366,8 @@ const Settings = () => {
   
   // RightImageArticle line height and font size
   const onRightImageArticleInputFieldChange = (fieldName, fieldValue) => {
+
+    const element = selectedElement?.layout?.style
     let formattedVal = fieldValue.replace("px", "");
 
     // Changing line height
@@ -342,7 +378,7 @@ const Settings = () => {
           layout: {
             ...selectedElement?.layout,
             style: {
-              ...selectedElement?.layout?.style,
+              ...element,
               [fieldName]: fieldValue,
             },
           },
@@ -367,6 +403,8 @@ const Settings = () => {
   };
   // RightImageArticle font style
   const onRightImageArticleInputFontStyleChange = (styleValue) => {
+
+    const element = selectedElement?.layout?.style
     const changedStyles = {
       fontWeight: styleValue.includes("bold") ? "bold" : "normal",
       fontStyle: styleValue.includes("italic") ? "italic" : "normal",
@@ -380,7 +418,7 @@ const Settings = () => {
       layout: {
         ...selectedElement?.layout,
         style: {
-          ...selectedElement?.layout?.style,
+          ...element,
           ...changedStyles,
         },
       },
@@ -390,12 +428,13 @@ const Settings = () => {
   // RightImageArticle font style
   const onRightImageArticleInputFontCaseChange = (fieldName, fieldValue) => {
 
+    const element = selectedElement?.layout?.style
     const updatedStyles = {
       ...selectedElement,
       layout: {
         ...selectedElement?.layout,
         style: {
-          ...selectedElement?.layout?.style,
+          ...element,
           [fieldName]:fieldValue,
         },
       },
@@ -404,12 +443,14 @@ const Settings = () => {
   };
   // RightImageArticle align & background & color style
   const onRightImageArticleAlignStyleChange = (fieldName, fieldValue) => {
+
+    const element = selectedElement?.layout?.style
     const updatedStyles = {
       ...selectedElement,
       layout: {
         ...selectedElement?.layout,
         style: {
-          ...selectedElement?.layout?.style,
+          ...element,
           [fieldName]: fieldValue,
         },
       },
@@ -418,15 +459,17 @@ const Settings = () => {
   };
   // RightImageArticle outer style
   const onRightImageArticleOuterStyleChange = (fieldName, fieldValue) => {
+
+    const element = selectedElement?.layout
     const updatedStyles = {
       ...selectedElement,
       layout: {
-        ...selectedElement?.layout,
+        ...element,
         style: {
-          ...selectedElement?.layout?.style,
+          ...element?.style,
         },
         outerStyle: {
-          ...selectedElement?.layout?.outerStyle,
+          ...element?.outerStyle,
           [fieldName]: fieldValue,
         },
       },
@@ -439,131 +482,132 @@ const Settings = () => {
       <h2 className="mt-2 px-2 font-semibold text-gray-500">Setting</h2>
       <div className="space-y-2">
         {/* Button Content Logic */}
-        {element?.content && (
+        {selectedElement?.layout[selectedElement?.index]?.content && (
           <InputButton
             label={"Content"}
             fieldName={"content"}
             className="ml-3 form-input"
-            elementFieldVal={element?.content}
+            elementFieldVal={selectedElement?.layout[selectedElement?.index]?.content}
             onInputContentChange={onInputContentChange}
           />
         )}
 
         {/* Button Url Logic */}
-        {element?.url && (
+        {selectedElement?.layout[selectedElement?.index]?.url && (
           <InputButton
             label={"Url"}
             fieldName={"url"}
             className="ml-3 form-input"
-            elementFieldVal={element?.url}
+            elementFieldVal={selectedElement?.layout[selectedElement?.index]?.url}
             onInputContentChange={onInputContentChange}
           />
         )}
 
         {/* Button Background Color Logic */}
-        {element?.style?.backgroundColor && (
+        {selectedElement?.layout[selectedElement?.index]?.style?.backgroundColor && (
           <InputButtonColor
             label={"Background Color"}
             fieldName={"backgroundColor"}
-            elementFieldVal={element?.style?.backgroundColor}
+            elementFieldVal={selectedElement?.layout[selectedElement?.index]?.style?.backgroundColor}
             onInputButtonStyleChangeHandle={onInputButtonStyleChangeHandle}
           />
         )}
 
         {/* Button Color Logic */}
-        {element?.style?.color && (
+        {selectedElement?.layout[selectedElement?.index]?.type === "button" && selectedElement?.layout[selectedElement?.index]?.style?.color && (
           <InputButtonColor
             label={"Color"}
-            fieldName={"backgroundColor"}
-            elementFieldVal={element?.style?.color}
+            fieldName={"color"}
+            elementFieldVal={selectedElement?.layout[selectedElement?.index]?.style?.color}
             onInputButtonStyleChangeHandle={onInputButtonStyleChangeHandle}
             />
           )}
 
         {/* Button Font Size Logic */}
-        {element?.style?.fontSize && (
+        {selectedElement?.layout[selectedElement?.index]?.style?.fontSize && (
           <InputFieldChange
             label={"Font Size"}
             fieldName={"fontSize"}
             className="ml-3 form-input"
-            elementFieldVal={element?.style?.fontSize}
+            elementFieldVal={selectedElement?.layout[selectedElement?.index]?.style?.fontSize}
             onInputFieldChange={onInputFieldChange}
           />
         )}
 
         {/* Button Font Style Logic */}
-        {(element?.style?.fontWeight ||
-          element?.style?.fontStyle ||
-          element?.style?.textDecoration) && (
+        {(selectedElement?.layout[selectedElement?.index]?.style?.fontWeight ||
+          selectedElement?.layout[selectedElement?.index]?.style?.fontStyle ||
+          selectedElement?.layout[selectedElement?.index]?.style?.textDecoration) && (
           <FontStyle
             label={"Font Style"}
             className="ml-3 form-input"
             elementFieldVal={[
-              element?.style?.fontWeight,
-              element?.style?.fontStyle,
-              element?.style?.textDecoration,
+              selectedElement?.layout[selectedElement?.index]?.style?.fontWeight,
+              selectedElement?.layout[selectedElement?.index]?.style?.fontStyle,
+              selectedElement?.layout[selectedElement?.index]?.style?.textDecoration,
             ]}
             onFontStyleChangeHandle={onButtonFontStyleChangeHandle}
           />
         )}
 
         {/* Button Font Case (Uppercase, Lowercase, Capitalize) Logic */}
-        {element?.style?.textTransform && (
+        {selectedElement?.layout[selectedElement?.index]?.style?.textTransform && (
           <TableFontStyle
             label={"Font Cases"}
             fieldName={"textTransform"}
+            options={textTransfromData}
             className="ml-3 form-input"
-            elementFieldVal={element?.style?.textTransform}
+            elementFieldVal={selectedElement?.layout[selectedElement?.index]?.style?.textTransform}
             onFontStyleChangeHandle={onInputFieldChange}
           />
         )}
 
         {/* Padding Logic */}
-        {element?.style?.padding && (
+        {selectedElement?.layout[selectedElement?.index]?.style?.padding && (
           <InputFieldChange
             label={"Padding"}
             fieldName={"padding"}
             className="ml-3 form-input"
-            elementFieldVal={element?.style?.padding}
+            elementFieldVal={selectedElement?.layout[selectedElement?.index]?.style?.padding}
             onInputFieldChange={onInputFieldChange}
             />
           )}
 
         {/* Border radius Logic */}
-        {element?.type !== "divider" && element?.style?.borderRadius && (
+        {selectedElement?.layout[selectedElement?.index]?.type !== "divider" && selectedElement?.layout[selectedElement?.index]?.style?.borderRadius && (
           <InputFieldChange
             label={"Border Radius"}
             fieldName={"borderRadius"}
             className="ml-3 form-input"
-            elementFieldVal={element?.style?.borderRadius}
+            elementFieldVal={selectedElement?.layout[selectedElement?.index]?.style?.borderRadius}
             onInputFieldChange={onInputFieldChange}
             />
           )}
 
         {/* Button align Logic */}
-        {element?.outerStyle?.justifyContent && (
+        {selectedElement?.layout[selectedElement?.index]?.outerStyle?.justifyContent && (
           <InputFieldOuterStyle
             label={"Align Button"}
             fieldName={"justifyContent"}
             className="ml-3 form-input"
-            elementFieldVal={element?.outerStyle?.justifyContent}
+            elementFieldVal={selectedElement?.layout[selectedElement?.index]?.outerStyle?.justifyContent}
             onInputFieldOuterStyle={onInputFieldOuterStyle}
           />
         )}
 
         {/* Table Logic */}
-        {element?.type === "table" && (
+        {selectedElement?.layout[selectedElement?.index]?.type === "table" && (
           <TableEdit
-            element={element}
+            element={selectedElement?.layout[selectedElement?.index]}
             onChangeTableCell={(row, col) => {
               onChangeTableCell({ row: row, col: col });
             }}
           />
         )}
 
-        {/* Table Style Logic */}
-        {element?.type === "table" &&
-          element?.cellData &&
+        {/* Table Background Color Style Logic */}
+        {selectedElement?.layout[selectedElement?.index]?.type === "table" &&
+          selectedElement?.layout[selectedElement?.index]?.cellData &&
           tableCellData?.style?.backgroundColor && (
             <TableCellStyle
               label={"Background Color"}
@@ -574,8 +618,8 @@ const Settings = () => {
           )}
 
         {/* Table Font Style Logic */}
-        {element?.type === "table" &&
-          element?.cellData &&
+        {selectedElement?.layout[selectedElement?.index]?.type === "table" &&
+          selectedElement?.layout[selectedElement?.index]?.cellData &&
           (tableCellData?.style?.fontWeight ||
             tableCellData?.style?.fontStyle ||
             tableCellData?.style?.textDecoration) && (
@@ -592,12 +636,13 @@ const Settings = () => {
           )}
 
         {/* Table Font Case (Uppercase, Lowercase, Capitalize) Logic */}
-        {element?.type === "table" &&
-          element?.cellData &&
+        {selectedElement?.layout[selectedElement?.index]?.type === "table" &&
+          selectedElement?.layout[selectedElement?.index]?.cellData &&
           tableCellData?.style?.textTransform && (
             <TableFontStyle
               label={"Font Cases"}
               fieldName={"textTransform"}
+              options={textTransfromData}
               className="ml-3 form-input"
               elementFieldVal={tableCellData?.style?.textTransform}
               onFontStyleChangeHandle={onTableFontCaseChangeHandle}
@@ -605,8 +650,8 @@ const Settings = () => {
           )}
 
         {/* Table Font Size Logic */}
-        {element?.type === "table" &&
-          element?.cellData &&
+        {selectedElement?.layout[selectedElement?.index]?.type === "table" &&
+          selectedElement?.layout[selectedElement?.index]?.cellData &&
           tableCellData?.style?.fontSize && (
             <InputFieldChange
               label={"Font Size"}
@@ -618,8 +663,8 @@ const Settings = () => {
           )}
 
         {/* Table Padding Logic */}
-        {element?.type === "table" &&
-          element?.cellData &&
+        {selectedElement?.layout[selectedElement?.index]?.type === "table" &&
+          selectedElement?.layout[selectedElement?.index]?.cellData &&
           tableCellData?.style?.padding && (
             <InputFieldChange
               label={"Padding"}
@@ -631,39 +676,39 @@ const Settings = () => {
           )}
 
         {/* Image setting logic */}
-        {element?.type === "image" && element?.imageUrl && (
+        {selectedElement?.layout[selectedElement?.index]?.type === "image" && selectedElement?.layout[selectedElement?.index]?.imageUrl && (
           <ImageUpload
             label={"Image"}
             fieldName={"imageUrl"}
-            elementFieldVal={element?.imageUrl}
+            elementFieldVal={selectedElement?.layout[selectedElement?.index]?.imageUrl}
             onImageUploadHandle={onImageUploadHandle}
           />
         )}
 
         {/* Image border radius logic */}
-        {element?.style?.innerStyle?.borderRadius && (
+        {selectedElement?.layout[selectedElement?.index]?.style?.innerStyle?.borderRadius && (
           <InputFieldChange
             label={"Border Radius"}
             fieldName={"borderRadius"}
             className="ml-3 form-input"
-            elementFieldVal={element?.style?.innerStyle?.borderRadius}
+            elementFieldVal={selectedElement?.layout[selectedElement?.index]?.style?.innerStyle?.borderRadius}
             onInputFieldChange={onImageFieldChange}
           />
         )}
 
         {/* Spacer style logic */}
-        {element?.type === "spacer" && element?.style?.height && (
+        {selectedElement?.layout[selectedElement?.index]?.type === "spacer" && selectedElement?.layout[selectedElement?.index]?.style?.height && (
           <InputFieldChange
             label={"height"}
             fieldName={"height"}
             className="ml-3 form-input"
-            elementFieldVal={element?.style?.height}
+            elementFieldVal={selectedElement?.layout[selectedElement?.index]?.style?.height}
             onInputFieldChange={onInputFieldChange}
           />
         )}
 
         {/* Right image article image upload logic */}
-        {selectedElement?.layout?.type === "right-image-article" &&
+        {(selectedElement?.layout?.type === "right-image-article" || selectedElement?.layout?.type === "left-image-article") &&
          selectedElement?.layout?.imageUrl && (
             <ImageUpload
             label={"Image"}
@@ -674,7 +719,7 @@ const Settings = () => {
           )}
 
         {/* Right image article content logic */}
-        {selectedElement?.layout?.type === "right-image-article" &&
+        {(selectedElement?.layout?.type === "right-image-article" || selectedElement?.layout?.type === "left-image-article") &&
           typeof selectedElement?.layout?.content !== "undefined" && (
             <RightImageArticleTextContent
               label={"Content"}
@@ -685,8 +730,8 @@ const Settings = () => {
             />
           )}
 
-        {/* Right image background logic */}
-        {selectedElement?.layout?.type === "right-image-article" &&
+        {/* Right image article background color logic */}
+        {(selectedElement?.layout?.type === "right-image-article" || selectedElement?.layout?.type === "left-image-article") &&
           selectedElement?.layout?.style?.backgroundColor && (
             <InputButtonColor
             label={"Background Color"}
@@ -696,8 +741,19 @@ const Settings = () => {
           />
           )}
 
+        {/* Right image article color logic */}
+        {(selectedElement?.layout?.type === "right-image-article" || selectedElement?.layout?.type === "left-image-article") &&
+          selectedElement?.layout?.style?.color && (
+            <InputButtonColor
+            label={"Color"}
+            fieldName={"color"}
+            elementFieldVal={selectedElement?.layout?.style?.color}
+            onInputButtonStyleChangeHandle={onRightImageArticleAlignStyleChange}
+          />
+          )}
+
         {/* Right image article font size logic */}
-        {selectedElement?.layout?.type === "right-image-article" &&
+        {(selectedElement?.layout?.type === "right-image-article" || selectedElement?.layout?.type === "left-image-article") &&
           selectedElement?.layout?.style?.fontSize && (
             <InputFieldChange
               label={"Font Size"}
@@ -709,7 +765,7 @@ const Settings = () => {
           )}
 
         {/* Right image article font style logic */}
-        {selectedElement?.layout?.type === "right-image-article" &&
+        {(selectedElement?.layout?.type === "right-image-article" || selectedElement?.layout?.type === "left-image-article") &&
           (selectedElement?.layout?.style?.fontWeight ||
             selectedElement?.layout?.style?.fontStyle ||
             selectedElement?.layout?.style?.textDecoration) && (
@@ -726,11 +782,12 @@ const Settings = () => {
           )}
 
         {/* Right image article font case logic */}
-        {selectedElement?.layout?.type === "right-image-article" &&
+        {(selectedElement?.layout?.type === "right-image-article" || selectedElement?.layout?.type === "left-image-article") &&
           selectedElement?.layout?.style?.textTransform  && (
             <TableFontStyle
               label={"Font Cases"}
               fieldName={"textTransform"}
+              options={textTransfromData}
               className="ml-3 form-input"
               elementFieldVal={selectedElement?.layout?.style?.textTransform}
               onFontStyleChangeHandle={onRightImageArticleInputFontCaseChange}
@@ -738,7 +795,7 @@ const Settings = () => {
           )}
 
         {/* Right image article align logic */}
-        {selectedElement?.layout?.type === "right-image-article" &&
+        {(selectedElement?.layout?.type === "right-image-article" || selectedElement?.layout?.type === "left-image-article") &&
           selectedElement?.layout?.style?.textAlign && (
             <InputFieldOuterStyle
               label={"Align Button"}
@@ -750,7 +807,7 @@ const Settings = () => {
           )}
 
         {/* Right image article linehight logic */}
-        {selectedElement?.layout?.type === "right-image-article" &&
+        {(selectedElement?.layout?.type === "right-image-article" || selectedElement?.layout?.type === "left-image-article") &&
           selectedElement?.layout?.style?.lineHeight && (
             <InputFieldChange
               label={"Line Height"}
@@ -762,7 +819,7 @@ const Settings = () => {
           )}
 
         {/* Right image article outer style logic */}
-        {selectedElement?.layout?.type === "right-image-article" &&
+        {(selectedElement?.layout?.type === "right-image-article" || selectedElement?.layout?.type === "left-image-article") &&
           selectedElement?.layout?.outerStyle?.width && (
             <RightImageArticleOuterStyle
               label={"Width"}
