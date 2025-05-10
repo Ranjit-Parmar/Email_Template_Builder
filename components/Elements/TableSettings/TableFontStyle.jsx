@@ -18,7 +18,7 @@ const TableFontStyle = ({ label, fieldName, elementFieldVal, options, onFontStyl
         onValueChange={handleValueChange}
       >
         {options.map((item, index) => (
-          <ToggleGroupItem key={index} className="w-full" value={item.fontValue} aria-label={item.fontValue}>
+          <ToggleGroupItem key={index} className="w-full" value={item.value} aria-label={item.value}>
             {item.icon}
           </ToggleGroupItem>
         ))}

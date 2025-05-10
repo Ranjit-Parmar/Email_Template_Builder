@@ -17,6 +17,7 @@ import button from "@/public/button.png";
 import spacer from "@/public/spacer.png";
 import table from "@/public/Table.png";
 import image from "@/public/hero.png";
+import logo from '@/public/logo.png'
 import text from "@/public/Text.png";
 import divider from "@/public/Divider.png";
 import ElementCard from "./ElementCard";
@@ -80,6 +81,32 @@ const LayoutData = [
     label: "Heading",
     type: "heading",
     icon: heading,
+    content: "This is heading",
+    style: {
+      fontSize: "20px", 
+      fontWeight: "normal",
+      fontStyle: "normal",
+      textDecoration: "none",
+      textTransform: "capitalize",
+      lineHeight: 1.4,
+      backgroundColor: "#ffffff",
+      color: "#1a202c",
+      padding: "4px", 
+      marginTop: "0px",
+      marginBottom: "0px",
+      textAlign: "center",
+      wordBreak: "break-word",
+      overflow: "hidden",
+      borderRadius: "6px",
+      boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+      transition: "all 0.3s ease",
+    },
+
+    outerStyle: {
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+    },
   },
   {
     label: "Article 1",
@@ -141,6 +168,41 @@ const LayoutData = [
     label: "Header",
     type: "header",
     icon: layout3,
+    outerStyle: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItem: 'center',
+      backgroundColor: '#ffffff',
+      borderRadius: '5px',
+      height: '50px'
+    },
+    imageStyle: {
+      display: 'flex',
+      imageUrl: logo,
+      position: 'left',
+      borderRadius: '5px',
+      padding: '5px',
+      width: 'auto',
+      height: 'auto'
+    },
+    links: ['home','about','contact','help'],
+    style: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItem: 'center',
+      gap: '10px',
+      padding: '5px',
+      color: '#00bcd4',
+      fontSize: '16px',
+      fontStyle: 'normal',
+      fontWeight: 'normal',
+      letterSpacing: '0.2px',
+      textTransform: 'uppercase',
+      textDecoration: 'none',
+      width: '100%',
+      cursor: 'pointer',
+      
+    },
   },
 ];
 

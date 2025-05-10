@@ -14,24 +14,36 @@ import TableFontStyle from "./Elements/TableSettings/TableFontStyle";
 import ImageUpload from "./Elements/ImageSettings/ImageUpload";
 import RightImageArticleOuterStyle from "./Elements/RightImageArticleSettings/RightImageArticleOuterStyle";
 import RightImageArticleTextContent from "./Elements/RightImageArticleSettings/RightImageArticleTextContent";
-import { ALargeSmall, LucideCaseLower, LucideCaseUpper } from "lucide-react";
+import { ALargeSmall, ArrowLeftSquare, ArrowRightSquare, LucideCaseLower, LucideCaseUpper } from "lucide-react";
+import HeaderImageToggle from "./Elements/HeaderLayoutSettings/HeaderImageToggle";
 
 const Settings = () => {
 
   const textTransfromData = [
       {
-        fontValue: "Uppercase",
         icon: <LucideCaseUpper/>,
+        value: "Uppercase",
       },
       {
-        fontValue: "Lowercase",
         icon: <LucideCaseLower/>,
+        value: "Lowercase",
       },
       {
-        fontValue: "Capitalize",
         icon: <ALargeSmall/>,
+        value: "Capitalize",
       },
     ];
+
+  const HeaderImagePositionToggle = [
+        {
+        icon : <ArrowLeftSquare/>,
+        value : 'left'
+        },
+        {
+        icon : <ArrowRightSquare/>,
+        value : 'right'
+        }
+]
 
   const { selectedElement, setSelectedElement } =
     useContext(SelectedElementContext);
@@ -369,7 +381,7 @@ const Settings = () => {
 
     const element = selectedElement?.layout?.style
     let formattedVal = fieldValue.replace("px", "");
-
+    
     // Changing line height
     if (fieldName === "lineHeight") {
       if (formattedVal >= 12 && formattedVal <= 50) {
@@ -385,9 +397,55 @@ const Settings = () => {
         };
         setSelectedElement(updatedStyles);
       }
+    }else if(fieldName === "fontSize"){
+      // Changing font size
+      if (formattedVal >= 12 && formattedVal <= 24) {
+        const updatedStyles = {
+          ...selectedElement,
+          layout: {
+            ...selectedElement?.layout,
+            style: {
+              ...selectedElement?.layout?.style,
+              [fieldName]: fieldValue,
+            },
+          },
+        };
+        setSelectedElement(updatedStyles);
+      }
+    }else if(fieldName === "padding"){
+
+      // Changing padding 
+      if (formattedVal >= 0 && formattedVal <= 24) {
+        const updatedStyles = {
+          ...selectedElement,
+          layout: {
+            ...selectedElement?.layout,
+            style: {
+              ...selectedElement?.layout?.style,
+              [fieldName]: fieldValue,
+            },
+          },
+        };
+        setSelectedElement(updatedStyles);
+      }
+    }else if(fieldName === "gap"){
+      // Changing gap 
+      if (formattedVal >= 0 && formattedVal <= 40) {
+        const updatedStyles = {
+          ...selectedElement,
+          layout: {
+            ...selectedElement?.layout,
+            style: {
+              ...selectedElement?.layout?.style,
+              [fieldName]: fieldValue,
+            },
+          },
+        };
+        setSelectedElement(updatedStyles);
+      }
     }
-    // Changing font size
-    if (formattedVal >= 12 && formattedVal <= 24) {
+    // Changing letter spacing 
+    if (formattedVal >= 0 && formattedVal <= 12) {
       const updatedStyles = {
         ...selectedElement,
         layout: {
@@ -400,6 +458,7 @@ const Settings = () => {
       };
       setSelectedElement(updatedStyles);
     }
+
   };
   // RightImageArticle font style
   const onRightImageArticleInputFontStyleChange = (styleValue) => {
@@ -427,7 +486,7 @@ const Settings = () => {
   };
   // RightImageArticle font style
   const onRightImageArticleInputFontCaseChange = (fieldName, fieldValue) => {
-
+    
     const element = selectedElement?.layout?.style
     const updatedStyles = {
       ...selectedElement,
@@ -459,7 +518,7 @@ const Settings = () => {
   };
   // RightImageArticle outer style
   const onRightImageArticleOuterStyleChange = (fieldName, fieldValue) => {
-
+    
     const element = selectedElement?.layout
     const updatedStyles = {
       ...selectedElement,
@@ -475,6 +534,97 @@ const Settings = () => {
       },
     };
     setSelectedElement(updatedStyles);
+  };
+  
+  // Header image upload
+  const onHeaderImageChange = (fieldName, fieldValue) => {
+
+    const element = selectedElement?.layout
+    const updatedContent = {
+       ...selectedElement,
+       layout: {
+        ...element,
+        imageStyle: {
+          ...element?.imageStyle,
+          [fieldName]: fieldValue
+        }
+       }
+      };
+    setSelectedElement(updatedContent);
+  };
+
+  // Header image toggle
+  const onHeaderImageToggle = (fieldName, fieldValue) => {
+
+    const element = selectedElement?.layout
+    const updatedContent = {
+       ...selectedElement,
+       layout: {
+        ...element,
+        imageStyle: {
+          ...element?.imageStyle,
+          [fieldName]: fieldValue ? 'flex' : 'none'
+        }
+       }
+      };
+    setSelectedElement(updatedContent);
+  };
+
+  // Header background color change
+  const onHeaderBackgroundStyle = (fieldName, fieldValue) => {
+
+    const element = selectedElement?.layout
+    const updatedContent = {
+       ...selectedElement,
+       layout: {
+        ...element,
+        outerStyle:{
+          ...element?.outerStyle,
+          [fieldName]: fieldValue
+        },
+        imageStyle: {
+          ...element?.imageStyle,
+          [fieldName]: fieldValue
+        }
+       }
+      };
+    setSelectedElement(updatedContent);
+  };
+
+  // Header height change
+  const onHeaderHeightChange = (fieldName, fieldValue) => {
+    const element = selectedElement?.layout
+
+    if(fieldName === 'imageToggle'){
+      const updatedContent = {
+         ...selectedElement,
+         layout: {
+          ...element,
+          outerStyle:{
+            ...element?.outerStyle,
+            [fieldName]: fieldValue
+          }
+         }
+        };
+      setSelectedElement(updatedContent);
+    }else{
+
+    let formattedVal = fieldValue.replace("px", "");
+      
+    if(formattedVal >= 24 && formattedVal <= 100){
+      const updatedContent = {
+         ...selectedElement,
+         layout: {
+          ...element,
+          outerStyle:{
+            ...element?.outerStyle,
+            [fieldName]: fieldValue
+          }
+         }
+        };
+      setSelectedElement(updatedContent);
+    }
+  }
   };
 
   return (
@@ -719,7 +869,9 @@ const Settings = () => {
           )}
 
         {/* Right image article content logic */}
-        {(selectedElement?.layout?.type === "right-image-article" || selectedElement?.layout?.type === "left-image-article") &&
+        {(selectedElement?.layout?.type === "right-image-article" ||
+          selectedElement?.layout?.type === "left-image-article"  ||
+          selectedElement?.layout?.type === "heading") &&
           typeof selectedElement?.layout?.content !== "undefined" && (
             <RightImageArticleTextContent
               label={"Content"}
@@ -731,7 +883,8 @@ const Settings = () => {
           )}
 
         {/* Right image article background color logic */}
-        {(selectedElement?.layout?.type === "right-image-article" || selectedElement?.layout?.type === "left-image-article") &&
+        {(selectedElement?.layout?.type === "right-image-article" ||
+          selectedElement?.layout?.type === "left-image-article") &&
           selectedElement?.layout?.style?.backgroundColor && (
             <InputButtonColor
             label={"Background Color"}
@@ -742,7 +895,9 @@ const Settings = () => {
           )}
 
         {/* Right image article color logic */}
-        {(selectedElement?.layout?.type === "right-image-article" || selectedElement?.layout?.type === "left-image-article") &&
+        {(selectedElement?.layout?.type === "right-image-article" ||
+          selectedElement?.layout?.type === "left-image-article"  ||
+          selectedElement?.layout?.type === "heading") &&
           selectedElement?.layout?.style?.color && (
             <InputButtonColor
             label={"Color"}
@@ -753,7 +908,9 @@ const Settings = () => {
           )}
 
         {/* Right image article font size logic */}
-        {(selectedElement?.layout?.type === "right-image-article" || selectedElement?.layout?.type === "left-image-article") &&
+        {(selectedElement?.layout?.type === "right-image-article" ||
+          selectedElement?.layout?.type === "left-image-article"  ||
+          selectedElement?.layout?.type === "heading") &&
           selectedElement?.layout?.style?.fontSize && (
             <InputFieldChange
               label={"Font Size"}
@@ -765,7 +922,9 @@ const Settings = () => {
           )}
 
         {/* Right image article font style logic */}
-        {(selectedElement?.layout?.type === "right-image-article" || selectedElement?.layout?.type === "left-image-article") &&
+        {(selectedElement?.layout?.type === "right-image-article" ||
+          selectedElement?.layout?.type === "left-image-article"   ||
+          selectedElement?.layout?.type === "heading") &&
           (selectedElement?.layout?.style?.fontWeight ||
             selectedElement?.layout?.style?.fontStyle ||
             selectedElement?.layout?.style?.textDecoration) && (
@@ -782,7 +941,9 @@ const Settings = () => {
           )}
 
         {/* Right image article font case logic */}
-        {(selectedElement?.layout?.type === "right-image-article" || selectedElement?.layout?.type === "left-image-article") &&
+        {(selectedElement?.layout?.type === "right-image-article" ||
+          selectedElement?.layout?.type === "left-image-article"  ||
+          selectedElement?.layout?.type === "heading") &&
           selectedElement?.layout?.style?.textTransform  && (
             <TableFontStyle
               label={"Font Cases"}
@@ -829,6 +990,147 @@ const Settings = () => {
               onRightImageArticleOuterStyleChange={onRightImageArticleOuterStyleChange}
             />
           )}
+
+          {/* Header image style logic */}
+          {selectedElement?.layout?.type === "header"  && selectedElement?.layout?.imageStyle?.imageUrl && (
+            <ImageUpload
+            label={"Image"}
+            fieldName={"imageUrl"}
+            elementFieldVal={selectedElement?.layout?.imageStyle?.imageUrl}
+            onImageUploadHandle={onHeaderImageChange}
+          />
+          )}
+
+          {/* Header image toggle logic */}
+          {selectedElement?.layout?.type === "header"  && selectedElement?.layout?.imageStyle?.display && (
+            <HeaderImageToggle
+            label={"Image Toggle"}
+            fieldName={"display"}
+            elementFieldVal={selectedElement?.layout?.imageStyle?.display}
+            onToggleHandle={onHeaderImageToggle}
+          />
+          )}
+
+          {/* Header image border radius style logic */}
+          {selectedElement?.layout?.type === "header"  && selectedElement?.layout?.imageStyle?.borderRadius && (
+            <InputFieldChange
+            label={"Image Radius"}
+            fieldName={"borderRadius"}
+            className="ml-3 form-input"
+            elementFieldVal={selectedElement?.layout?.imageStyle?.borderRadius}
+            onInputFieldChange={onHeaderImageChange}
+          />
+          )}
+
+          {/* Header height style logic */}
+          {selectedElement?.layout?.type === "header"  && selectedElement?.layout?.outerStyle?.height && (
+            <InputFieldChange
+            label={"Height"}
+            fieldName={"height"}
+            className="ml-3 form-input"
+            elementFieldVal={selectedElement?.layout?.outerStyle?.height}
+            onInputFieldChange={onHeaderHeightChange}
+          />
+          )}
+
+          {/* Header background color style logic */}
+          {selectedElement?.layout?.type === "header"  && selectedElement?.layout?.outerStyle?.backgroundColor && (
+           <InputButtonColor
+            label={"Background Color"}
+            fieldName={"backgroundColor"}
+            elementFieldVal={selectedElement?.layout?.outerStyle?.backgroundColor}
+            onInputButtonStyleChangeHandle={onHeaderBackgroundStyle}
+          />
+          )}
+
+          {/* Header color style logic */}
+          {selectedElement?.layout?.type === "header"  && selectedElement?.layout?.style?.color && (
+           <InputButtonColor
+            label={"Color"}
+            fieldName={"color"}
+            elementFieldVal={selectedElement?.layout?.style?.color}
+            onInputButtonStyleChangeHandle={onRightImageArticleAlignStyleChange}
+          />
+          )}
+
+          {/* Header font style logic */}
+          {selectedElement?.layout?.type === "header"  && (selectedElement?.layout?.style?.fontWeight ||
+            selectedElement?.layout?.style?.fontStyle ||
+            selectedElement?.layout?.style?.textDecoration) && (
+           <FontStyle
+              label={"Font Style"}
+              className="ml-3 form-input"
+              elementFieldVal={[
+                selectedElement?.layout?.style?.fontWeight,
+                selectedElement?.layout?.style?.fontStyle,
+                selectedElement?.layout?.style?.textDecoration,
+              ]}
+              onFontStyleChangeHandle={onRightImageArticleInputFontStyleChange}
+            />
+          )}
+
+          {/* Header font case logic */}
+          {selectedElement?.layout?.type === "header"  && selectedElement?.layout?.style?.textTransform && (
+           <TableFontStyle
+              label={"Font Cases"}
+              fieldName={"textTransform"}
+              options={textTransfromData}
+              className="ml-3 form-input"
+              elementFieldVal={selectedElement?.layout?.style?.textTransform}
+              onFontStyleChangeHandle={onRightImageArticleInputFontCaseChange}
+            />
+          )}
+
+          {/* Header image position style logic */}
+          {selectedElement?.layout?.type === "header"  && selectedElement?.layout?.imageStyle?.position && (
+            <TableFontStyle
+              label={"Position"}
+              fieldName={"position"}
+              options={HeaderImagePositionToggle}
+              className="ml-3 form-input"
+              elementFieldVal={selectedElement?.layout?.imageStyle?.position}
+              onFontStyleChangeHandle={onHeaderImageChange}
+            />
+          )}
+
+          {/* Header font size logic */}
+          {selectedElement?.layout?.type === "header"  
+            && selectedElement?.layout?.style?.fontSize   
+            && (
+            <InputFieldChange
+              label={"Font Size"}
+              fieldName={"fontSize"}
+              className="ml-3 form-input"
+              elementFieldVal={selectedElement?.layout?.style?.fontSize}
+              onInputFieldChange={onRightImageArticleInputFieldChange}
+            />
+          )}
+          {/* Header gap style logic */}
+          {selectedElement?.layout?.type === "header"  
+            && selectedElement?.layout?.style?.gap 
+            && (
+            <InputFieldChange
+              label={"Gap"}
+              fieldName={"gap"}
+              className="ml-3 form-input"
+              elementFieldVal={selectedElement?.layout?.style?.gap}
+              onInputFieldChange={onRightImageArticleInputFieldChange}
+            />
+          )}
+
+          {/* Header letter spacing style logic */}
+          {selectedElement?.layout?.type === "header"  
+            && selectedElement?.layout?.style?.letterSpacing
+            && (
+            <InputFieldChange
+              label={"Letter Spacing"}
+              fieldName={"letterSpacing"}
+              className="ml-3 form-input"
+              elementFieldVal={selectedElement?.layout?.style?.letterSpacing}
+              onInputFieldChange={onRightImageArticleInputFieldChange}
+            />
+          )}
+
       </div>
     </div>
   );
