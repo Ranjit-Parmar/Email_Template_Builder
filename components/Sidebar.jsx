@@ -173,7 +173,6 @@ const LayoutData = [
       justifyContent: 'center',
       alignItem: 'center',
       backgroundColor: '#ffffff',
-      borderRadius: '5px',
       height: '50px'
     },
     imageStyle: {

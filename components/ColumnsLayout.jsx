@@ -19,7 +19,7 @@ const ColumnsLayout = ({ layout }) => {
   const panelRef = useRef();
   const [dragOver, setDragOver] = useState();
   const [isDraggingElement, setIsDraggingElement] = useState(false);
-  const { setLayoutDataArray } = useContext(LayoutContext);
+  const { setLayoutDataArray, layoutDataArray } = useContext(LayoutContext);
   const { elementDataObj } = useContext(ElementContext);
   const { selectedElement, setSelectedElement } = useContext(SelectedElementContext);
 
@@ -123,7 +123,7 @@ const ColumnsLayout = ({ layout }) => {
   };
 
   return (
-    <div>
+    <div className="relative">
       <ResizablePanelGroup
         direction="horizontal"
         style={{

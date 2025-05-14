@@ -6,5 +6,11 @@ export default defineSchema({
         name : v.string(),
         email : v.string(),
         profile : v.string(),
+    }),
+
+    emailTemplates: defineTable({
+        templateId : v.string(),
+        template : v.any(),
+        email : v.string()
     })
 })
