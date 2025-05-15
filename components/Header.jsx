@@ -19,9 +19,9 @@ const Header = () => {
   const { userDetails, setUserDetails } = useUserContext();
   const router = useRouter();
 
+
   const logOutHandle = () => {
-    localStorage.removeItem("userInfo");
-    localStorage.removeItem("emailTemplate");
+    localStorage.clear()
     setUserDetails(null);
     router.push("/");
   };

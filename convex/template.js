@@ -8,21 +8,38 @@ export const SaveTemplate = mutation({
     email: v.string(),
   },
 
-  handler: async(ctx,args) => {
-    
+  handler: async (ctx, args) => {
     try {
-      const result = await ctx.db.insert('emailTemplates', {
-            templateId: args.templateId,
-            template: args.template,
-            email : args.email
-        })
 
-        return result;
+      const existing = await ctx.db
+        .query("emailTemplates")
+        .filter((q) =>
+          q.and(
+            q.eq(q.field("templateId"), args.templateId),
+            q.eq(q.field("email"), args.email)
+          )
+        )
+        .first();
+
+      if (existing) {
+        await ctx.db.patch(existing._id, {
+          template: args.template,
+        });
+        return { updated: true, id: existing._id };
+      }
+
+      const newId = await ctx.db.insert("emailTemplates", {
+        templateId: args.templateId,
+        template: args.template,
+        email: args.email,
+      });
+
+      return { inserted: true, id: newId };
     } catch (error) {
-        
+      console.error("Error saving template:", error);
+      return { error: "Failed to save template" };
     }
-
-  }
+  },
 });
 
 

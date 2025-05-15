@@ -5,19 +5,20 @@ import { useContext, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { api } from '@/convex/_generated/api'; // Path to Convex API autogen
 import { useMutation } from 'convex/react';
+import { useParams } from 'next/navigation';
 
 const SaveTemplateButton = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { userDetails } = useUserContext();
   const { layoutDataArray } = useContext(LayoutContext);
   const saveTemplate = useMutation(api.template.SaveTemplate); // Use Convex mutation
-  const tempId = uuidv4();
+   const {templateId} = useParams();
 
   const handleSave = async () => {
     setIsLoading(true);
     try {
       const result = await saveTemplate({
-        templateId: tempId,
+        templateId,
         template: layoutDataArray,
         email: userDetails?.email
       });

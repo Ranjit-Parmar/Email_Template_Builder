@@ -21,30 +21,31 @@
     const {templateId} = useParams();
     const convex = useConvex();
 
+
     useEffect(()=>{
+
       if(userDetails){
         getEmailTemplate()
       }
+      
     },[userDetails])
     
    const getEmailTemplate = async () => {
   setIsLoading(true);
 
   try {
-    const result = await convex.query(api.template.getEmailTemplate, {
-      templateId,
-      email: userDetails?.email,
-    });
 
-
+      const result = await convex.query(api.template.getEmailTemplate, {
+       templateId,
+       email: userDetails?.email,
+     });
+        
     // Fallback: result might be null if no template is found
     if (result && result.template) {
       setLayoutDataArray(result.template);
       localStorage.setItem('emailTemplate', JSON.stringify(result.template)); // optionally update localStorage
     } else {
-      console.warn('Template not found in DB');
-      const template = JSON.parse(localStorage.getItem('emailTemplate')); // optionally update localStorage
-      setLayoutDataArray(template);
+      setLayoutDataArray([]);
     }
 
   } catch (err) {
