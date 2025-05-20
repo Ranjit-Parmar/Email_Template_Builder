@@ -539,17 +539,8 @@ const Settings = () => {
   // Header image upload
   const onHeaderImageChange = (fieldName, fieldValue) => {
 
-    const element = selectedElement?.layout
-    const updatedContent = {
-       ...selectedElement,
-       layout: {
-        ...element,
-        imageStyle: {
-          ...element?.imageStyle,
-          [fieldName]: fieldValue
-        }
-       }
-      };
+    const updatedContent = { ...selectedElement };
+    updatedContent.layout[fieldName] = fieldValue;
     setSelectedElement(updatedContent);
   };
 
@@ -992,11 +983,11 @@ const Settings = () => {
           )}
 
           {/* Header image style logic */}
-          {selectedElement?.layout?.type === "header"  && selectedElement?.layout?.imageStyle?.imageUrl && (
+          {selectedElement?.layout?.type === "header"  && selectedElement?.layout?.imageUrl && (
             <ImageUpload
             label={"Image"}
             fieldName={"imageUrl"}
-            elementFieldVal={selectedElement?.layout?.imageStyle?.imageUrl}
+            elementFieldVal={selectedElement?.layout?.imageUrl}
             onImageUploadHandle={onHeaderImageChange}
           />
           )}

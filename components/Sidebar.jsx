@@ -168,16 +168,9 @@ const LayoutData = [
     label: "Header",
     type: "header",
     icon: layout3,
-    outerStyle: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItem: 'center',
-      backgroundColor: '#ffffff',
-      height: '50px'
-    },
+    imageUrl: logo,
     imageStyle: {
       display: 'flex',
-      imageUrl: logo,
       position: 'left',
       borderRadius: '5px',
       padding: '5px',
@@ -202,6 +195,13 @@ const LayoutData = [
       cursor: 'pointer',
       
     },
+    outerStyle: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItem: 'center',
+      backgroundColor: '#ffffff',
+      height: '50px'
+    }
   },
 ];
 

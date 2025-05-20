@@ -32,7 +32,7 @@ const HeaderLayout = ({layout}) => {
       {layout?.imageStyle?.position === 'left' && 
       <Image
         style={layout?.imageStyle} 
-        src={layout?.imageStyle?.imageUrl} 
+        src={layout?.imageUrl} 
         height={50} 
         width={50} 
         alt='logo'
@@ -47,7 +47,7 @@ const HeaderLayout = ({layout}) => {
       {layout?.imageStyle?.position === 'right' && 
       <Image
         style={layout?.imageStyle}
-        src={layout?.imageStyle?.imageUrl} 
+        src={layout?.imageUrl} 
         height={50} 
         width={50} 
         alt='logo'

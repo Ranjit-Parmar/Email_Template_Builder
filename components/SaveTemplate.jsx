@@ -1,11 +1,12 @@
 'use client';
 import { useUserContext } from '@/app/ConvexClientProvider';
 import { LayoutContext } from '@/context/LayoutContext';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { api } from '@/convex/_generated/api'; // Path to Convex API autogen
 import { useMutation } from 'convex/react';
 import { useParams } from 'next/navigation';
+import axios from 'axios';
 
 const SaveTemplateButton = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -14,14 +15,49 @@ const SaveTemplateButton = () => {
   const saveTemplate = useMutation(api.template.SaveTemplate); // Use Convex mutation
    const {templateId} = useParams();
 
+   useEffect(()=>{
+    console.log(layoutDataArray)
+   },[layoutDataArray])
+
+  const uploadImagesToCloudinary = async (layoutArray) => {
+  const updatedArray = await Promise.all(
+    layoutArray.map(async (element) => {
+      const isBase64 = typeof element.imageUrl === 'string' && element.imageUrl.startsWith('data:image');
+
+      if (isBase64) {
+        try {
+          const { data } = await axios.post('/api/uploadImagetoCloudinary', {
+            file: element.imageUrl,
+          });
+
+          return {
+            ...element,
+            imageUrl: data.url, // Replace base64 with Cloudinary URL
+          };
+        } catch (error) {
+          console.error('Cloudinary upload failed:', error);
+          return element; // return original element if upload fails
+        }
+      }
+
+      return element; // Already a URL or no image, return as-is
+    })
+  );
+
+  return updatedArray;
+};
+
   const handleSave = async () => {
     setIsLoading(true);
+
     try {
-      const result = await saveTemplate({
-        templateId,
-        template: layoutDataArray,
-        email: userDetails?.email
-      });
+      const updatedLayoutData = await uploadImagesToCloudinary(layoutDataArray);
+
+    const result = await saveTemplate({
+      templateId,
+      template: updatedLayoutData,
+      email: userDetails?.email,
+    });
 
       console.log('Template saved with id:', result);
     } catch (error) {

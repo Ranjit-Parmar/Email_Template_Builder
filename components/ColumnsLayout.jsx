@@ -22,6 +22,7 @@ const ColumnsLayout = ({ layout }) => {
   const { setLayoutDataArray, layoutDataArray } = useContext(LayoutContext);
   const { elementDataObj } = useContext(ElementContext);
   const { selectedElement, setSelectedElement } = useContext(SelectedElementContext);
+  const templateRef = useRef();
 
   // Normalize panel sizes to ensure they sum to 100%
   const normalizePanelSizes = (sizes) => {
@@ -59,6 +60,7 @@ const ColumnsLayout = ({ layout }) => {
 
   // Store panel sizes in localStorage whenever panelSizes changes
   useEffect(() => {
+    console.log(templateRef.current.innerHTML)
     if (panelSizes && panelSizes.length > 0) {
       // Update the localStorage with the latest panel sizes
       localStorage.setItem(`panelSizes-${layout.id}`, JSON.stringify(panelSizes));
@@ -123,7 +125,7 @@ const ColumnsLayout = ({ layout }) => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative" ref={templateRef}>
       <ResizablePanelGroup
         direction="horizontal"
         style={{
