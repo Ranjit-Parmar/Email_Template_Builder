@@ -20,6 +20,7 @@ const ConvexClientProvider = ({ children }) => {
   const [selectedHeading, setSelectedHeading] = useState();
   const [selectedLeftImageArticle, setSelectedLeftImageArticle] = useState();
   const [selectedRightImageArticle, setSelectedRightImageArticle] = useState();
+  const [layoutHTML, setLayoutHTML] = useState('');
 
   useEffect(() => {
     
@@ -56,7 +57,7 @@ const ConvexClientProvider = ({ children }) => {
     <ConvexProvider client={convex}>
       <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
         <UserContext.Provider value={{ userDetails, setUserDetails, isUserInsideEditor,setIsUserInsideEditor }}>
-          <LayoutContext.Provider value={{ layoutDataObj, setLayoutDataObj, layoutDataArray, setLayoutDataArray }}>
+          <LayoutContext.Provider value={{ layoutDataObj, setLayoutDataObj, layoutDataArray, setLayoutDataArray, layoutHTML, setLayoutHTML }}>
             <ElementContextProvider>
               <SelectedElementContext.Provider value={{
                 selectedElement, setSelectedElement,

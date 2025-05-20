@@ -13,7 +13,7 @@ const SaveTemplateButton = () => {
   const { userDetails } = useUserContext();
   const { layoutDataArray } = useContext(LayoutContext);
   const saveTemplate = useMutation(api.template.SaveTemplate); // Use Convex mutation
-   const {templateId} = useParams();
+  const {templateId} = useParams();
 
    useEffect(()=>{
     console.log(layoutDataArray)

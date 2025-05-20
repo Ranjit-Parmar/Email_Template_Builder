@@ -16,7 +16,6 @@ import {
 
 const ColumnsLayout = ({ layout }) => {
   
-  const panelRef = useRef();
   const [dragOver, setDragOver] = useState();
   const [isDraggingElement, setIsDraggingElement] = useState(false);
   const { setLayoutDataArray, layoutDataArray } = useContext(LayoutContext);
@@ -60,7 +59,6 @@ const ColumnsLayout = ({ layout }) => {
 
   // Store panel sizes in localStorage whenever panelSizes changes
   useEffect(() => {
-    console.log(templateRef.current.innerHTML)
     if (panelSizes && panelSizes.length > 0) {
       // Update the localStorage with the latest panel sizes
       localStorage.setItem(`panelSizes-${layout.id}`, JSON.stringify(panelSizes));
@@ -138,7 +136,6 @@ const ColumnsLayout = ({ layout }) => {
           <React.Fragment key={index}>
             <ResizablePanel
               key={index}
-              ref={panelRef}
               defaultSize={panelSizes[index]} // Controlled size for the panel
               minSize={layout.numOfColumns === 4 ? 20 : 25}
               onResize={(newSize) => handleResize(newSize, index)} // Handle resize

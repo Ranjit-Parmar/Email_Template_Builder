@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import mobile from "@/public/mobile.png";
 import desktop from "@/public/desktop.png";
 import Image from "next/image";
@@ -12,6 +12,7 @@ import { ElementContext } from "@/context/ElementContext";
 import HeaderLayout from "./HeaderLayout";
 import { SelectedElementContext } from "@/context/SelectedElement";
 import { ArrowDown, ArrowUp, Trash } from "lucide-react";
+import { cleanHtmlForEmail } from "@/utils/cleanHtmlForEmail";
 
 const Canvas = () => {
   const [viewPort, setViewPort] = useState("desktop");
@@ -20,11 +21,16 @@ const Canvas = () => {
     setLayoutDataObj,
     layoutDataArray,
     setLayoutDataArray,
+    setLayoutHTML
   } = useContext(LayoutContext);
   const { setSelectedHeader, selectedElement, setSelectedElement } = useContext(SelectedElementContext);
   const { setElementDataObj } = useContext(ElementContext);
   const [isDraggingLayout, setIsDraggingLayout] = useState(false);
+  const htmlRef = useRef()
 
+  useEffect(()=>{
+  getHTMLCode()
+  })
   const onDragOverHandle = (e) => {
     e.preventDefault();
     if (layoutDataObj?.dragValue) {
@@ -100,6 +106,14 @@ const Canvas = () => {
     }
   }
   };
+
+  const getHTMLCode = () => {
+  if (htmlRef.current) {
+    const rawHTML = htmlRef.current.innerHTML;
+    const cleaned = cleanHtmlForEmail(rawHTML);
+    setLayoutHTML(cleaned);
+  }
+};
   return (
     <>
       <div className=" col-span-3 h-screen bg-gray-100 space-y-5 overflow-y-auto custom-scrollbar">
@@ -131,6 +145,7 @@ const Canvas = () => {
             onDragOver={onDragOverHandle}
             onDragLeave={onDragLeaveHandle}
             onDrop={(e) => onDropHandle(e)}
+            ref={htmlRef}
           >
             {(layoutDataArray?.length > 0 &&
               layoutDataArray?.map((layout, i) => {

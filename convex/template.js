@@ -79,3 +79,32 @@ export const getUserEmailTemplates = query({
     }
   },
 });
+
+
+export const shareEmailTemplate = mutation({
+  args: {
+    to: v.string(),
+    subject: v.string(),
+    html: v.string(),
+    templateId: v.string(),
+    user: v.string(),
+    createdAt: v.string(), // ✅ Make sure this line is here
+  },
+  handler: async (ctx, args) => {
+    try {
+      const result = await ctx.db.insert("shared_templates", {
+        to: args.to,
+        subject: args.subject,
+        html: args.html,
+        templateId: args.templateId,
+        user: args.user,
+        createdAt: args.createdAt,
+      });
+
+      return { success: true, id: result };
+    } catch (error) {
+      console.error("Error saving shared template:", error);
+      return { success: false, error: "Failed to share template" };
+    }
+  },
+});

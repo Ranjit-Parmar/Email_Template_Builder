@@ -12,5 +12,14 @@ export default defineSchema({
         templateId : v.string(),
         template : v.any(),
         email : v.string()
-    })
+    }),
+
+    shared_templates: defineTable({
+        to: v.string(),
+        subject: v.string(),
+        html: v.string(),
+        templateId: v.string(),
+        user: v.string(),
+        createdAt: v.string(),
+    }),
 })
