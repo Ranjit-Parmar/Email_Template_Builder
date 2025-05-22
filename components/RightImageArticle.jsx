@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { SelectedElementContext } from '@/context/SelectedElement';
-import { ImageIcon } from 'lucide-react';
+import { Image as ImageIcon } from 'lucide-react'; // fallback icon from Lucide
 
 const RightImageArticle = ({ layout }) => {
   const {
@@ -32,27 +32,42 @@ const RightImageArticle = ({ layout }) => {
 
   return (
     <div
-      className={`flex ${
+      style={{ display: 'flex' }}
+      className={`${
         layout?.type === selectedElement?.layout?.type && layout?.id === selectedElement?.layout?.id
           ? 'border border-blue-500'
           : ''
       }`}
       onClick={() => onClickHandle({ layout, id: layout?.id })}
     >
-      <div style={layout?.style} className="w-full flex">
+      <div style={layout?.style}>
         {layout?.content}
       </div>
-      <div style={layout?.outerStyle} className="min-w-44">
-        <img
-          src={layout?.imageUrl || ImageIcon}
-          alt="image_placeholder"
-          style={{
-            width: '100%',
-            height: 'auto',
-            display: 'block',
-            borderRadius: '4px',
-          }}
-        />
+
+      <div style={layout?.outerStyle}>
+        {layout?.imageUrl ? (
+          <img
+            src={layout.imageUrl}
+            alt={layout.alt || 'image_placeholder'}
+            style={{
+              width: 'auto',
+              minwidth: '50%',
+              height: 'auto',
+              display: 'block',
+            }}
+          />
+        ) : (
+          <ImageIcon
+            size={48}
+            color="gray"
+            style={{
+              width: '100%',
+              height: 'auto',
+              display: 'block',
+              borderRadius: '4px',
+            }}
+          />
+        )}
       </div>
     </div>
   );

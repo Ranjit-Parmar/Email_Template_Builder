@@ -2,6 +2,7 @@ import { Resend } from "resend";
 import { ConvexHttpClient } from "convex/browser"; // Use HTTP client in Next.js
 import { api } from "@/convex/_generated/api";
 
+
 const resend = new Resend(process.env.NEXT_RESEND_API_KEY);
 const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL);
 
@@ -16,13 +17,13 @@ export async function POST(req) {
         status: 400,
       });
     }
-
+    
     // 1. Send email using Resend
     const emailResponse = await resend.emails.send({
       from: "Email Builder <onboarding@resend.dev>",
       to,
       subject,
-      html,
+      html
     });
 
     // 2. Call Convex mutation using HTTP client
@@ -45,3 +46,8 @@ export async function POST(req) {
     });
   }
 }
+
+
+
+
+ 

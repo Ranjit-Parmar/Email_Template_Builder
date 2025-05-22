@@ -12,7 +12,7 @@ import { ElementContext } from "@/context/ElementContext";
 import HeaderLayout from "./HeaderLayout";
 import { SelectedElementContext } from "@/context/SelectedElement";
 import { ArrowDown, ArrowUp, Trash } from "lucide-react";
-import { cleanHtmlForEmail } from "@/utils/cleanHtmlForEmail";
+import { cleanHtmlForEmail } from "@/utils/cleanHtmlForEmail"; 
 
 const Canvas = () => {
   const [viewPort, setViewPort] = useState("desktop");
@@ -136,7 +136,9 @@ const Canvas = () => {
           />
         </div>
 
-        <div className=" mt-20 flex justify-center">
+        <div className=" mt-20 flex justify-center"
+        ref={htmlRef}
+        >
           <div
             className={` bg-white p-5 w-full ${viewPort === "desktop" ? "max-w-2xl" : "max-w-md"}
            ${isDraggingLayout ? "!bg-green-100 p-3" : ""}
@@ -145,7 +147,7 @@ const Canvas = () => {
             onDragOver={onDragOverHandle}
             onDragLeave={onDragLeaveHandle}
             onDrop={(e) => onDropHandle(e)}
-            ref={htmlRef}
+            
           >
             {(layoutDataArray?.length > 0 &&
               layoutDataArray?.map((layout, i) => {

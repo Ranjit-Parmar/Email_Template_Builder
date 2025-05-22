@@ -112,11 +112,13 @@ const LayoutData = [
     label: "Article 1",
     type: "right-image-article",
     icon: layout1,
-    imageUrl: image,
+    imageUrl: "/hero.png", 
     alt: "Image",
     content:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa, voluptatum. Molestiae quos quaerat, quas at officia, itaque corrupti quod possimus commodi saepe ipsa dolore. Quo quasi repellendus cum et voluptates distinctio ab quibusdam unde laborum corrupti eos, ex ea quam iusto neque, amet voluptatem ratione voluptas?",
     style: {
+      display: "flex",
+      width: "100%",
       fontSize: "16px",
       fontWeight: "normal",
       fontStyle: "normal",
@@ -134,17 +136,20 @@ const LayoutData = [
     },
     outerStyle: {
       width: "100%",
+      minWidth: "150px"
     },
   },
   {
     label: "Article 2",
     type: "left-image-article",
     icon: layout2,
-    imageUrl: image,
+    imageUrl: "/hero.png", 
     alt: "Image",
     content:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa, voluptatum. Molestiae quos quaerat, quas at officia, itaque corrupti quod possimus commodi saepe ipsa dolore. Quo quasi repellendus cum et voluptates distinctio ab quibusdam unde laborum corrupti eos, ex ea quam iusto neque, amet voluptatem ratione voluptas?",
     style: {
+      display: "flex",
+      width: "100%",
       fontSize: "16px",
       fontWeight: "normal",
       fontStyle: "normal",
@@ -162,6 +167,7 @@ const LayoutData = [
     },
     outerStyle: {
       width: "100%",
+      minWidth: "150px"
     },
   },
   {

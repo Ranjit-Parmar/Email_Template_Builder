@@ -15,10 +15,6 @@ const SaveTemplateButton = () => {
   const saveTemplate = useMutation(api.template.SaveTemplate); // Use Convex mutation
   const {templateId} = useParams();
 
-   useEffect(()=>{
-    console.log(layoutDataArray)
-   },[layoutDataArray])
-
   const uploadImagesToCloudinary = async (layoutArray) => {
   const updatedArray = await Promise.all(
     layoutArray.map(async (element) => {
