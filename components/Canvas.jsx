@@ -30,7 +30,7 @@ const Canvas = () => {
 
   useEffect(()=>{
   getHTMLCode()
-  })
+  },[layoutDataArray])
   const onDragOverHandle = (e) => {
     e.preventDefault();
     if (layoutDataObj?.dragValue) {
@@ -153,7 +153,7 @@ const Canvas = () => {
               layoutDataArray?.map((layout, i) => {
                 return (
                   <React.Fragment key={i}>
-                    <div className="relative">
+                    <div className="relative w-full">
                       {getLayoutHandle(layout)}
                    {
                     selectedElement?.layout?.id == layout?.id &&

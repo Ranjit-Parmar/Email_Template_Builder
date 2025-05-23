@@ -185,11 +185,17 @@ const LayoutData = [
     },
     links: ['home','about','contact','help'],
     style: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItem: 'center',
-      gap: '10px',
-      padding: '5px',
+    padding: "4px 12px",
+    display: "inline-block",
+    textDecoration: "none",
+      
+    },
+    outerStyle: {
+      display: "flex",
+    height: "64px",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: '#ffffff',
       color: '#00bcd4',
       fontSize: '16px',
       fontStyle: 'normal',
@@ -197,16 +203,6 @@ const LayoutData = [
       letterSpacing: '0.2px',
       textTransform: 'uppercase',
       textDecoration: 'none',
-      width: '100%',
-      cursor: 'pointer',
-      
-    },
-    outerStyle: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItem: 'center',
-      backgroundColor: '#ffffff',
-      height: '50px'
     }
   },
 ];
