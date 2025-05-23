@@ -17,7 +17,7 @@ import button from "@/public/button.png";
 import spacer from "@/public/spacer.png";
 import table from "@/public/Table.png";
 import image from "@/public/hero.png";
-import logo from '@/public/logo.png'
+import logo from "@/public/logo.png";
 import text from "@/public/Text.png";
 import divider from "@/public/Divider.png";
 import ElementCard from "./ElementCard";
@@ -83,7 +83,7 @@ const LayoutData = [
     icon: heading,
     content: "This is heading",
     style: {
-      fontSize: "20px", 
+      fontSize: "20px",
       fontWeight: "normal",
       fontStyle: "normal",
       textDecoration: "none",
@@ -91,7 +91,7 @@ const LayoutData = [
       lineHeight: 1.4,
       backgroundColor: "#ffffff",
       color: "#1a202c",
-      padding: "4px", 
+      padding: "4px",
       marginTop: "0px",
       marginBottom: "0px",
       textAlign: "center",
@@ -112,7 +112,7 @@ const LayoutData = [
     label: "Article 1",
     type: "right-image-article",
     icon: layout1,
-    imageUrl: "/hero.png", 
+    imageUrl: "/hero.png",
     alt: "Image",
     content:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa, voluptatum. Molestiae quos quaerat, quas at officia, itaque corrupti quod possimus commodi saepe ipsa dolore. Quo quasi repellendus cum et voluptates distinctio ab quibusdam unde laborum corrupti eos, ex ea quam iusto neque, amet voluptatem ratione voluptas?",
@@ -136,14 +136,14 @@ const LayoutData = [
     },
     outerStyle: {
       width: "100%",
-      minWidth: "150px"
+      minWidth: "150px",
     },
   },
   {
     label: "Article 2",
     type: "left-image-article",
     icon: layout2,
-    imageUrl: "/hero.png", 
+    imageUrl: "/hero.png",
     alt: "Image",
     content:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa, voluptatum. Molestiae quos quaerat, quas at officia, itaque corrupti quod possimus commodi saepe ipsa dolore. Quo quasi repellendus cum et voluptates distinctio ab quibusdam unde laborum corrupti eos, ex ea quam iusto neque, amet voluptatem ratione voluptas?",
@@ -167,7 +167,7 @@ const LayoutData = [
     },
     outerStyle: {
       width: "100%",
-      minWidth: "150px"
+      minWidth: "150px",
     },
   },
   {
@@ -176,34 +176,37 @@ const LayoutData = [
     icon: layout3,
     imageUrl: logo,
     imageStyle: {
-      display: 'flex',
-      position: 'left',
-      borderRadius: '5px',
-      padding: '5px',
-      width: 'auto',
-      height: 'auto'
+      display: "flex",
+      position: "left",
+      borderRadius: "5px",
+      padding: "5px",
+      width: "auto",
+      height: "auto",
     },
-    links: ['home','about','contact','help'],
+    links: ["home", "about", "contact", "help"],
     style: {
-    padding: "4px 12px",
-    display: "inline-block",
-    textDecoration: "none",
-      
+      display: "flex",
+      gap: "56px",
+      letterSpacing: "0.2px",
+      width: "100%",
+      height: "100%",
+      justifyContent: "center",
+      alignItems: "center",
     },
+
     outerStyle: {
       display: "flex",
-    height: "64px",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: '#ffffff',
-      color: '#00bcd4',
-      fontSize: '16px',
-      fontStyle: 'normal',
-      fontWeight: 'normal',
-      letterSpacing: '0.2px',
-      textTransform: 'uppercase',
-      textDecoration: 'none',
-    }
+      height: "64px",
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#ffffff",
+      color: "#00bcd4",
+      fontSize: "16px",
+      fontStyle: "normal",
+      fontWeight: "normal",
+      textTransform: "uppercase",
+      textDecoration: "none",
+    },
   },
 ];
 

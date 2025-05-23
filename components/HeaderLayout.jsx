@@ -56,9 +56,10 @@ const HeaderLayout = ({ layout }) => {
     >
       <tbody style={{width: '100%'}}>
         <tr style={layout?.outerStyle}>
-          {layout?.imageStyle?.position === "left" && layout?.imageUrl && (
-            <td className="p-1">
+          {layout?.imageStyle?.position === "left" && (
+            <td className="p-1" style={{"display":layout?.imageStyle?.display, 'borderRadius':layout?.imageStyle?.borderRadius}}>
               <Image
+                style={{'borderRadius':layout?.imageStyle?.borderRadius}}
                 className="rounded h-full "
                 src={layout.imageUrl}
                 width={50}
@@ -68,21 +69,23 @@ const HeaderLayout = ({ layout }) => {
             </td>
           )}
 
-          <td className="p-2 space-x-8 w-full flex justify-center items-center">
+          <td style={layout?.style}>
             {layout?.links?.map((link, i) => (
               <a
+              className="p-1"
                 key={i}
                 href="#"
-                style={layout?.style}
+
               >
                 {link}
               </a>
             ))}
           </td>
 
-          {layout?.imageStyle?.position === "right" && layout?.imageUrl && (
-            <td className="p-1">
+          {layout?.imageStyle?.position === "right" && (
+            <td className="p-1" style={{"display":layout?.imageStyle?.display, 'borderRadius':layout?.imageStyle?.borderRadius}}>
               <Image
+                style={{'borderRadius':layout?.imageStyle?.borderRadius}}
                 className="rounded h-full"
                 src={layout.imageUrl}
                 width={50}
